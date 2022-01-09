@@ -1,0 +1,18 @@
+plugins {
+    id 'java'
+    id 'groovy'
+}
+
+group 'raccoonlang'
+version '1.1'
+
+jar {
+    archiveBaseName.set("raccoonlang")
+    manifest {
+        attributes (
+                'Main-Class': 'raccoonlang.Main'
+        )
+    }
+}
+
+build.dependsOn(jar)
