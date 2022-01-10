@@ -10,6 +10,19 @@ public class Tokenizer {
     // the order of matchers is important! put most important rules at the top
     private TokenMatcher[] tokenMatchers = new TokenMatcher[]{
 
+            // highest priority
+            new OverloadPlusTokenMatcher(),
+            new OverloadMinusTokenMatcher(),
+            new OverloadTimesTokenMatcher(),
+            new OverloadDivisionTokenMatcher(),
+            new OverloadModuloTokenMatcher(),
+
+            // high priority
+            new IdentifierTokenMatcher(),
+            new StringLiteralTokenMatcher(),
+            new CommentTokenMatcher(),
+            new MultiLineCommentTokenMatcher(),
+            new NumberLiteralTokenMatcher(),
 
             // low priority
             new LambdaArrowTokenMatcher(),
@@ -51,6 +64,7 @@ public class Tokenizer {
             new DotTokenMatcher(),
             new CommaTokenMatcher(),
             new SemicolonTokenMatcher(),
+            new ColonTokenMatcher(),
 
             new I8TokenMatcher(),
             new I16TokenMatcher(),
@@ -82,6 +96,8 @@ public class Tokenizer {
 
             new NamespaceTokenMatcher(),
             new ImportlTokenMatcher(),
+
+            new WhiteSpaceTokenMatcher(),
     };
 
     public TokenStream tokenize(String inputFilePath, String fileContents) {
@@ -108,7 +124,9 @@ public class Tokenizer {
             }
 
             Token match = match(inputFilePath, fileContents, currentText, line, column);
-            tokenList.add(match);
+            if(!match.isSkip()){
+                tokenList.add(match);
+            }
 
             var matchLength = match.getText().length();
             index += matchLength;
@@ -126,6 +144,6 @@ public class Tokenizer {
             }
         }
 
-        throw new TokenNotRecognizedException(inputFilePath, text, line, column);
+        throw new TokenNotRecognizedException(inputFilePath, currentText, line, column);
     }
 }

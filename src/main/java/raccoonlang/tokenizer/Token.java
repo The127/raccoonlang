@@ -7,13 +7,19 @@ public class Token {
     private int column;
     private String text;
     private String fileName;
+    private boolean skip;
 
-    public Token(TokenType tokenType, int line, int column, String text, String fileName){
+    public Token(TokenType tokenType, int line, int column, String text, String fileName) {
+        this(tokenType, line, column, text, fileName, false);
+    }
+
+    public Token(TokenType tokenType, int line, int column, String text, String fileName, boolean skip){
         this.tokenType = tokenType;
         this.line = line;
         this.column = column;
         this.text = text;
         this.fileName = fileName;
+        this.skip = skip;
     }
 
     public TokenType getTokenType() {
@@ -40,5 +46,13 @@ public class Token {
                 ", column=" + column +
                 ", text='" + text + '\'' +
                 '}';
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public boolean isSkip() {
+        return skip;
     }
 }

@@ -12,6 +12,7 @@ public enum TokenType {
     DOT,            // .
     COMMA,          // ,
     SEMICOLON,      // ;
+    COLON,          // :
 
     EQUALS,         // =
     PLUS_EQUALS,    // +=
@@ -34,6 +35,12 @@ public enum TokenType {
     OP_BOOL_OR,     // ||
     OP_XOR,         // ^
 
+    OVERLOAD_PLUS,
+    OVERLOAD_MINUS,
+    OVERLOAD_TIMES,
+    OVERLOAD_DIVISION,
+    OVERLOAD_MODULO,
+
     OP_NOT,         // !
 
     LAMBDA_ARROW,   // =>
@@ -42,6 +49,7 @@ public enum TokenType {
     PRIVATE,
     PROTECTED,
     INTERNAL,
+    OVERRIDE, //TODO
 
     DATA,
     CLASS,
@@ -68,11 +76,14 @@ public enum TokenType {
     STRING,
     STRING_LITERAL, // "
 
+    NUMBER_LITERAL,
+
     NAMESPACE,
     IMPORT,        // for import stuff
 
     COMMENT,
-
+    MULTI_LINE_COMMENT,
+    WHITE_SPACE,
     EOF,
 
 }
