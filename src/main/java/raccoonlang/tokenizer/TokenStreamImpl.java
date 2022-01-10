@@ -18,7 +18,16 @@ public class TokenStreamImpl implements TokenStream {
     @Override
     public Token take() {
         if(position >= tokenList.size()){
-            Token eofToken = new Token(TokenType.EOF, -1, -1, "\0", filePath);
+            var eofLine = 0;
+            var eofCol = 0;
+
+            if(size() > 0){
+                var lastToken = tokenList.get(tokenList.size()-1);
+                eofLine = lastToken.getLine();
+                eofCol = lastToken.getColumn() + lastToken.getText().length();
+            }
+
+            Token eofToken = new Token(TokenType.EOF, eofLine, eofCol, "\0", filePath);
             return eofToken;
         }
 

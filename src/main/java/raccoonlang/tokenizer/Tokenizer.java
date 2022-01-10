@@ -72,27 +72,23 @@ public class Tokenizer {
         int column = 0;
 
         int index = 0;
-        int length = 0;
 
         int contentLength = fileContents.length();
         while (index < contentLength) {
-            length += 1;
-            String currentText = fileContents.substring(index, index + length);
+            String currentText = fileContents.substring(index);
 
             if (System.lineSeparator().equals(currentText)) {
                 line++;
                 column = 0;
-                length = 0;
                 continue;
             }
 
             Token match = match(inputFilePath, fileContents, currentText, line, column);
-            if (match != null) {
-                length = 0;
-                tokenList.add(match);
-            }
-            index++;
-            column++;
+            tokenList.add(match);
+
+            var matchLength = match.getText().length();
+            index += matchLength;
+            column += matchLength;
         }
 
         return new TokenStreamImpl(inputFilePath, tokenList);
