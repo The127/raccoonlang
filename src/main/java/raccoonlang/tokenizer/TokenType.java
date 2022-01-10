@@ -30,10 +30,11 @@ public enum TokenType {
     OP_MODULO,      // %
     OP_BIN_AND,     // &
     OP_BIN_OR,      // |
-    OP_BIN_XOR,     // ^
     OP_BOOL_AND,    // &&
     OP_BOOL_OR,     // ||
-    OP_BOOL_XOR,    // ^^
+    OP_XOR,         // ^
+
+    OP_NOT,         // !
 
     LAMBDA_ARROW,   // =>
 

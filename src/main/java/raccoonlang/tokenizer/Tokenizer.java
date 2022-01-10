@@ -9,6 +9,9 @@ public class Tokenizer {
 
     // the order of matchers is important! put most important rules at the top
     private TokenMatcher[] tokenMatchers = new TokenMatcher[]{
+
+
+            // low priority
             new LambdaArrowTokenMatcher(),
 
             new PlusEqualsTokenMatcher(),
@@ -20,6 +23,9 @@ public class Tokenizer {
             new OrEqualsTokenMatcher(),
             new XorEqualsTokenMatcher(),
 
+            new OpBinOrTokenMatcher(),
+            new OpBinAndTokenMatcher(),
+
             // lowest priority
             new OpenParenthesisTokenMatcher(),
             new CloseParenthesisTokenMatcher(),
@@ -27,6 +33,19 @@ public class Tokenizer {
             new CloseCurlyTokenMatcher(),
             new OpenSquareTokenMatcher(),
             new CloseSquareTokenMatcher(),
+
+            new OpPlusTokenMatcher(),
+            new OpMinusTokenMatcher(),
+            new OpTimesTokenMatcher(),
+            new OpDivisionTokenMatcher(),
+            new OpModuloTokenMatcher(),
+
+            new OpBinAndTokenMatcher(),
+            new OpBinOrTokenMatcher(),
+
+            new OpXorTokenMatcher(),
+
+            new OpNotTokenMatcher(),
 
             new EqualsTokenMatcher(),
             new DotTokenMatcher(),
