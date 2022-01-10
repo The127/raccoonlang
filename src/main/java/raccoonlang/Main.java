@@ -8,7 +8,7 @@ public class Main {
 
     public static void main(String[] args) {
         Tokenizer testee = new Tokenizer();
-        TokenStream stream = testee.tokenize("fake", "()");
+        TokenStream stream = testee.tokenize("fake", "\r\n()");
         System.out.println(stream.size());
         System.out.println(stream.take(TokenType.OPEN_PAREN));
         System.out.println(stream.take(TokenType.CLOSE_PAREN));

@@ -66,6 +66,10 @@ public class Tokenizer {
     };
 
     public TokenStream tokenize(String inputFilePath, String fileContents) {
+        fileContents = fileContents
+                .replaceAll("\r\n", "\n")
+                .replaceAll("\r", "\n");
+
         List<Token> tokenList = new ArrayList<>();
 
         int line = 0;
@@ -77,9 +81,10 @@ public class Tokenizer {
         while (index < contentLength) {
             String currentText = fileContents.substring(index);
 
-            if (System.lineSeparator().equals(currentText)) {
+            if (currentText.startsWith("\n")) {
                 line++;
                 column = 0;
+                index++;
                 continue;
             }
 
