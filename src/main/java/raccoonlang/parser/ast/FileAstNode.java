@@ -22,6 +22,7 @@ public class FileAstNode {
 
         fileAstNode.importsAstNode = ImportsAstNode.parse(parser);
         fileAstNode.namespaceAstNode = NamespaceAstNode.tryParse(parser);
+        fileAstNode.typeDefinitionsAstNode = TypeDefinitionsAstNode.parse(parser);
 
         return fileAstNode;
     }

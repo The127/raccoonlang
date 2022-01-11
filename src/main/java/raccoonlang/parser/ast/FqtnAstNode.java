@@ -22,6 +22,8 @@ public class FqtnAstNode {
             fqtnAstNode.identifiers.add(parser.take(TokenType.IDENTIFIER));
         }
 
+        //TODO: generics
+
         return fqtnAstNode;
     }
 

@@ -23,7 +23,7 @@ public class Tokenizer {
             new MultiLineCommentTokenMatcher(),
             new NumberLiteralTokenMatcher(),
 
-            // low priority
+            // medium priority
             new LambdaArrowTokenMatcher(),
 
             new PlusEqualsTokenMatcher(),
@@ -38,7 +38,7 @@ public class Tokenizer {
             new OpBinOrTokenMatcher(),
             new OpBinAndTokenMatcher(),
 
-            // lowest priority
+            // low priority
             new OpenParenthesisTokenMatcher(),
             new CloseParenthesisTokenMatcher(),
             new OpenCurlyTokenMatcher(),
@@ -92,12 +92,18 @@ public class Tokenizer {
             new VarTokenMatcher(),
             new DataTokenMatcher(),
             new ClassTokenMatcher(),
+            new InterfaceTokenMatcher(),
+            new FnTokenMatcher(),
 
             new NamespaceTokenMatcher(),
             new ImportlTokenMatcher(),
 
+            new OpLtTokenMatcher(),
+            new OpGtTokenMatcher(),
+
             new WhiteSpaceTokenMatcher(),
 
+            // lowest priority
             new IdentifierTokenMatcher(),
     };
 

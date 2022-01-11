@@ -10,14 +10,11 @@ public class Parser {
     public class ParserState {
         private int tokenIndex = 0;
 
-        public ParserState clone(){
-            ParserState clone = new ParserState();
-            clone.tokenIndex = this.tokenIndex;
-            return clone;
+        public ParserState(int tokenIndex){
+            this.tokenIndex = tokenIndex;
         }
     }
 
-    private ParserState parserState = new ParserState();
     private TokenStream tokenStream;
 
     public Parser(TokenStream tokenStream) {
@@ -33,21 +30,19 @@ public class Parser {
     }
 
     public Token take(TokenType tokenType) {
-        parserState.tokenIndex++;
         return tokenStream.take(tokenType);
     }
 
     public Token take() {
-        parserState.tokenIndex++;
         return tokenStream.take();
     }
 
-    public ParserState copyState(){
-        return parserState.clone();
+    public ParserState shelfState(){
+        return new ParserState(tokenStream.getPosition());
     }
 
     public void restore(ParserState parserState){
-        this.parserState.tokenIndex = parserState.tokenIndex;
+        tokenStream.seek(parserState.tokenIndex);
     }
 
     public static FileAstNode parse(TokenStream tokenStream) {

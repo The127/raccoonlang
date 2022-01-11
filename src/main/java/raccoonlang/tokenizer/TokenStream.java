@@ -8,4 +8,6 @@ public interface TokenStream {
     void seek(int position);
 
     Token peek(int lookAhead);
+
+    int getPosition();
 }

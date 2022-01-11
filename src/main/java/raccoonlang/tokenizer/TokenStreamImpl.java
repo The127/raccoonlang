@@ -60,4 +60,9 @@ public class TokenStreamImpl implements TokenStream {
     public Token peek(int lookAhead) {
         return tokenList.get(position + lookAhead);
     }
+
+    @Override
+    public int getPosition() {
+        return position;
+    }
 }

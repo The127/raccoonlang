@@ -35,6 +35,9 @@ public enum TokenType {
     OP_BOOL_OR,     // ||
     OP_XOR,         // ^
 
+    OP_LT,          // <
+    OP_GT,          // >
+
     OVERLOAD_PLUS,
     OVERLOAD_MINUS,
     OVERLOAD_TIMES,
@@ -53,6 +56,8 @@ public enum TokenType {
 
     DATA,
     CLASS,
+    INTERFACE,
+    FN,
     IDENTIFIER,
     VAR,
 

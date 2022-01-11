@@ -12,19 +12,19 @@ public class Main {
         Tokenizer testee = new Tokenizer();
         TokenStream stream = testee.tokenize("fake", "" +
                 "namespace help.me;\n" +
-                /*"\n" +
+                "\n" +
                 "public data class Point2d(f64 X, f64 Y){\n" +
                 "\n" +
-                "    public new(Point2d other) : this(other._x, other._y);\n" +
+                /*"    public new(Point2d other) : this(other._x, other._y);\n" +
                 "\n" +
                 "    public Point2d operator+(Point2d other) => new(other.x + _x, other.y + _y);\n" +
-                "    public Point2d operator*(f64 scalar) => Point2d.new(_x*scalar, _y*scalar);\n" +
+                "    public Point2d operator*(f64 scalar) => Point2d.new(_x*scalar, _y*scalar);\n" +*/
                 "}\n" +
                 "\n" +
                 "public void main(){// optionally string[] args or smth\n" +
-                "    var p = Point2d.new(1, 2) * 3;\n" +
-                "    println(p);\n" +
-                "}" +*/
+                /*"    var p = Point2d.new(1, 2) * 3;\n" +
+                "    println(p);\n" +*/
+                "}" +
                 "");
         System.out.println("token count: " + stream.size());
         FileAstNode ast = Parser.parse(stream);
