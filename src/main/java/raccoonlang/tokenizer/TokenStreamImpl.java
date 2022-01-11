@@ -31,6 +31,8 @@ public class TokenStreamImpl implements TokenStream {
             return eofToken;
         }
 
+        System.out.println("take: "  + tokenList.get(position).toString());
+
         return tokenList.get(position++);
     }
 
@@ -47,5 +49,15 @@ public class TokenStreamImpl implements TokenStream {
     @Override
     public int size() {
         return tokenList.size();
+    }
+
+    @Override
+    public void seek(int position) {
+        this.position = position;
+    }
+
+    @Override
+    public Token peek(int lookAhead) {
+        return tokenList.get(position + lookAhead);
     }
 }

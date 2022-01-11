@@ -18,7 +18,6 @@ public class Tokenizer {
             new OverloadModuloTokenMatcher(),
 
             // high priority
-            new IdentifierTokenMatcher(),
             new StringLiteralTokenMatcher(),
             new CommentTokenMatcher(),
             new MultiLineCommentTokenMatcher(),
@@ -98,6 +97,8 @@ public class Tokenizer {
             new ImportlTokenMatcher(),
 
             new WhiteSpaceTokenMatcher(),
+
+            new IdentifierTokenMatcher(),
     };
 
     public TokenStream tokenize(String inputFilePath, String fileContents) {
