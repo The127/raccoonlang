@@ -15,14 +15,32 @@ public class TypeDefinitionAstNode {
         typeDefinitionAstNode.interfaceDefinitionAstNode = InterfaceDefinitionAstNode.tryParse(parser);
         if(typeDefinitionAstNode.interfaceDefinitionAstNode == null){
             typeDefinitionAstNode.classDefinitionAstNode = ClassDefinitionAstNode.tryParse(parser);
-        }
-        if(typeDefinitionAstNode.classDefinitionAstNode == null){
-            typeDefinitionAstNode.dataClassDefinitionAstNode = DataClassDefinitionAstNode.tryParse(parser);
-        }
-        if(typeDefinitionAstNode.dataClassDefinitionAstNode == null){
-            typeDefinitionAstNode.functionDefinitionAstNode = FunctionDefinitionAstNode.tryParse(parser);
+        }else{
+            return typeDefinitionAstNode;
         }
 
-        return typeDefinitionAstNode;
+        if(typeDefinitionAstNode.classDefinitionAstNode == null){
+            typeDefinitionAstNode.dataClassDefinitionAstNode = DataClassDefinitionAstNode.tryParse(parser);
+        }else{
+            return typeDefinitionAstNode;
+        }
+
+        if(typeDefinitionAstNode.dataClassDefinitionAstNode == null){
+            typeDefinitionAstNode.functionDefinitionAstNode = FunctionDefinitionAstNode.tryParse(parser);
+        }else{
+            return typeDefinitionAstNode;
+        }
+
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        return "TypeDefinitionAstNode{" +
+                "interfaceDefinitionAstNode=" + (interfaceDefinitionAstNode == null ? "" : interfaceDefinitionAstNode.toString()) +
+                ", classDefinitionAstNode=" + (classDefinitionAstNode == null ? "" : classDefinitionAstNode.toString()) +
+                ", dataClassDefinitionAstNode=" + (dataClassDefinitionAstNode == null ? "" : dataClassDefinitionAstNode.toString()) +
+                ", functionDefinitionAstNode=" + (functionDefinitionAstNode == null ? "" : functionDefinitionAstNode.toString()) +
+                '}';
     }
 }

@@ -58,7 +58,13 @@ public class TokenStreamImpl implements TokenStream {
 
     @Override
     public Token peek(int lookAhead) {
-        return tokenList.get(position + lookAhead);
+        int oldPosition = this.position;
+        this.position += lookAhead;
+
+        Token result = take();
+
+        this.position = oldPosition;
+        return result;
     }
 
     @Override

@@ -10,7 +10,8 @@ import java.util.List;
 
 public class FqtnAstNode {
 
-    List<Token> identifiers = new ArrayList<>();
+    public List<Token> identifiers = new ArrayList<>();
+    public GenericTypesAstNode genericTypesAstNode;
 
     public static FqtnAstNode parse(Parser parser) {
         FqtnAstNode fqtnAstNode = new FqtnAstNode();
@@ -22,7 +23,7 @@ public class FqtnAstNode {
             fqtnAstNode.identifiers.add(parser.take(TokenType.IDENTIFIER));
         }
 
-        //TODO: generics
+        fqtnAstNode.genericTypesAstNode = GenericTypesAstNode.tryParse(parser);
 
         return fqtnAstNode;
     }
@@ -30,7 +31,7 @@ public class FqtnAstNode {
     @Override
     public String toString() {
         return "FqtnAstNode{" +
-                "identifiers=" + identifiers.stream().map(x -> x.getText()).reduce((a, b) -> a + "." + b).get() +
+                "identifiers=" + identifiers.stream().map(x -> x.getText()).reduce((a, b) -> a + "." + b).orElse("") +
                 '}';
     }
 }

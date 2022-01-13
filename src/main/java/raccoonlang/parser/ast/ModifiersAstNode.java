@@ -35,6 +35,9 @@ public class ModifiersAstNode {
                 default:
                     wasModifier = false;
             }
+            if(wasModifier){
+                parser.take();
+            }
         }
 
         return modifiersAstNode;

@@ -11,12 +11,14 @@ public class TypeDefinitionsAstNode {
     public static TypeDefinitionsAstNode parse(Parser parser) {
         TypeDefinitionsAstNode typeDefinitionsAstNode = new TypeDefinitionsAstNode();
 
-        do{
+        while(true){
             TypeDefinitionAstNode typeDefinitionAstNode = TypeDefinitionAstNode.tryParse(parser);
             if(typeDefinitionAstNode != null){
                 typeDefinitionsAstNode.typeDefinitionAstNodes.add(typeDefinitionAstNode);
+            }else{
+                break;
             }
-        }while (typeDefinitionsAstNode != null);
+        }
 
         return typeDefinitionsAstNode;
     }

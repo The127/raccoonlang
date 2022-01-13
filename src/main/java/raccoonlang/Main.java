@@ -21,7 +21,7 @@ public class Main {
                 "    public Point2d operator*(f64 scalar) => Point2d.new(_x*scalar, _y*scalar);\n" +*/
                 "}\n" +
                 "\n" +
-                "public void main(){// optionally string[] args or smth\n" +
+                "public fn void main(){// optionally string[] args or smth\n" +
                 /*"    var p = Point2d.new(1, 2) * 3;\n" +
                 "    println(p);\n" +*/
                 "}" +

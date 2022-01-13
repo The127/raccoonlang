@@ -95,6 +95,9 @@ public class Tokenizer {
             new InterfaceTokenMatcher(),
             new FnTokenMatcher(),
 
+            new WhereTokenMatcher(),
+            new NewTokenMatcher(),
+
             new NamespaceTokenMatcher(),
             new ImportlTokenMatcher(),
 

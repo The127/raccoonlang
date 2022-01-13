@@ -13,7 +13,7 @@ public class FileAstNode {
         return "FileAstNode{" +
                 "importsAstNode=" + importsAstNode.toString() +
                 ", namespaceAstNode=" + (namespaceAstNode == null ? "" : namespaceAstNode.toString()) +
-                //", typeDefinitionsAstNode=" + typeDefinitionsAstNode.toString() +
+                ", typeDefinitionsAstNode=" + typeDefinitionsAstNode.toString() +
                 '}';
     }
 

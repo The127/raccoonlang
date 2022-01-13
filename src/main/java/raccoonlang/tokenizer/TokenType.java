@@ -48,6 +48,9 @@ public enum TokenType {
 
     LAMBDA_ARROW,   // =>
 
+    WHERE,
+    NEW,
+
     PUBLIC,
     PRIVATE,
     PROTECTED,

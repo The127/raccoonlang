@@ -9,6 +9,8 @@ public class ClassDefinitionAstNode {
     public ModifiersAstNode modifiersAstNode;
     public Token name;
     public GenericTypesAstNode genericTypesAstNode;
+    public GenericTypeConstraintsAstNode genericTypeConstraintsAstNode;
+    public ClassBodyAstNode classBodyAstNode;
 
     public static ClassDefinitionAstNode tryParse(Parser parser) {
         Parser.ParserState parserState = parser.shelfState();
@@ -24,6 +26,8 @@ public class ClassDefinitionAstNode {
 
         classDefinitionAstNode.name = parser.take(TokenType.IDENTIFIER);
         classDefinitionAstNode.genericTypesAstNode = GenericTypesAstNode.tryParse(parser);
+        classDefinitionAstNode.genericTypeConstraintsAstNode = GenericTypeConstraintsAstNode.parse(parser);
+        classDefinitionAstNode.classBodyAstNode = ClassBodyAstNode.parse(parser);
 
         return classDefinitionAstNode;
     }

@@ -9,6 +9,8 @@ public class InterfaceDefinitionAstNode {
     public ModifiersAstNode modifiersAstNode;
     public Token name;
     public GenericTypesAstNode genericTypesAstNode;
+    public GenericTypeConstraintsAstNode genericTypeConstraintsAstNode;
+    public InterfaceBodyAstNode interfaceBodyAstNode;
 
     public static InterfaceDefinitionAstNode tryParse(Parser parser) {
         Parser.ParserState parserState = parser.shelfState();
@@ -24,8 +26,8 @@ public class InterfaceDefinitionAstNode {
 
         interfaceDefinitionAstNode.name = parser.take(TokenType.IDENTIFIER);
         interfaceDefinitionAstNode.genericTypesAstNode = GenericTypesAstNode.tryParse(parser);
-
-
+        interfaceDefinitionAstNode.genericTypeConstraintsAstNode = GenericTypeConstraintsAstNode.parse(parser);
+        interfaceDefinitionAstNode.interfaceBodyAstNode = InterfaceBodyAstNode.parse(parser);
 
         return interfaceDefinitionAstNode;
     }
