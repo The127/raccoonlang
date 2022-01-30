@@ -153,7 +153,6 @@ public class Tokenizer {
                 return token;
             }
         }
-
         throw new TokenNotRecognizedException(inputFilePath, currentText, line, column);
     }
 }
