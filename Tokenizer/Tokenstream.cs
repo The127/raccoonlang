@@ -1,6 +1,8 @@
 namespace Raccoonlang.Tokenizer;
 
 using System.Collections;
+
+using Exceptions;
 public class TokenStream : ITokenStream
 {
 
@@ -38,8 +40,7 @@ public class TokenStream : ITokenStream
     {
         Token t = take();
         if (t.Type != tokenType) {
-            // TODO(naomi): exceptions
-            //throw new Exception(t, tokenType);
+            throw new TokenMismatchException(t, tokenType);
         }
 
         return t;
