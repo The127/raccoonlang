@@ -41,7 +41,7 @@ public class I8TokenMatcher : TokenMatcher
 
 public class I16TokenMatcher : TokenMatcher
 {
-    public I16TokenMatcher() : base("i16", tokenType.I16) {}
+    public I16TokenMatcher() : base("i16", TokenType.I16) {}
 }
 
 public class I32TokenMatcher : TokenMatcher

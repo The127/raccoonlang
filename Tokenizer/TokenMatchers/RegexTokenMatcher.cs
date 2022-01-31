@@ -26,7 +26,7 @@ public abstract class RegexTokenMatcher : ITokenMatcher
     {
         MatchCollection coll = pattern.Matches(currentText);
         if (coll.Count > 0) {
-            return new Token(this.Type, line, column, coll[0], fileName, this.Skip);
+            return new Token(this.Type, line, column, coll[0].ToString(), fileName, this.Skip);
         }
         return null;
     }

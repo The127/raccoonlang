@@ -18,6 +18,7 @@ public class Token
         this.FileName = fileName;
         this.Skip = false;
     }
+    
     public Token(TokenType type, int line, int column, string text, string fileName, bool skip)
     {
         this.Type = type;

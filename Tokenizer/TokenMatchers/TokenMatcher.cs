@@ -1,6 +1,5 @@
 namespace Raccoonlang.Tokenizer.TokenMatchers;
 
-using Raccoonlang.Tokenizer;
 public abstract class TokenMatcher : ITokenMatcher
 {
     public string CheckValue {get;private set;}
