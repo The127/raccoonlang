@@ -25,6 +25,11 @@ public class TimesEqualsTokenMatcher : TokenMatcher
     public TimesEqualsTokenMatcher() : base("*=", TokenType.TIMES_EQUALS) {}
 }
 
+public class ModuloEqualsMatcher : TokenMatcher
+{
+    public ModuloEqualsMatcher() : base("%=", TokenType.MODULE_EQUALS) {}
+}
+
 public class OrEqualsTokenMatcher : TokenMatcher
 {
     public OrEqualsTokenMatcher() : base("|=", TokenType.OR_EQUALS) {}
