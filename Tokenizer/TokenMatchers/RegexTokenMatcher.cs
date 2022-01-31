@@ -22,7 +22,7 @@ public abstract class RegexTokenMatcher : ITokenMatcher
         this.Skip = false;
     }
 
-    public Token match(string currentText, int line, int column, string fileName)
+    public Token Match(string currentText, int line, int column, string fileName)
     {
         MatchCollection coll = pattern.Matches(currentText);
         if (coll.Count > 0) {

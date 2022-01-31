@@ -16,9 +16,9 @@ public class TokenStream : ITokenStream
         this.tokenList = tokenList;
     }
 
-    public Token take()
+    public Token Take()
     {
-        if (Position >= this.size()) {
+        if (Position >= this.Size()) {
             int eofLine = 0;
             int eofCol = 0;
 
@@ -36,9 +36,9 @@ public class TokenStream : ITokenStream
         return this.tokenList[Position++];
     }
 
-    public Token take(TokenType tokenType)
+    public Token Take(TokenType tokenType)
     {
-        Token t = take();
+        Token t = this.Take();
         if (t.Type != tokenType) {
             throw new TokenMismatchException(t, tokenType);
         }
@@ -46,17 +46,17 @@ public class TokenStream : ITokenStream
         return t;
     }
 
-    public int size()
+    public int Size()
     {
         return this.tokenList.Count();
     }
 
-    public Token peek(int peekOffset)
+    public Token Peek(int peekOffset)
     {
         int pos = this.Position;
         this.Position += peekOffset;
 
-        Token res = take();
+        Token res = this.Take();
         this.Position = pos;
         return res;
     }
