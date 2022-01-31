@@ -84,3 +84,8 @@ public class WhereTokenMatcher : TokenMatcher
 {
     public WhereTokenMatcher() : base("where", TokenType.WHERE) {}
 }
+
+public class LambdaArrowTokenmatcher : TokenMatcher
+{
+    public LambdaArrowTokenmatcher() : base("=>", TokenType.LAMBDA_ARROW) {}
+}
