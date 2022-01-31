@@ -4,12 +4,12 @@ namespace Raccoonlang.Tokenizer.TokenMatchers;
 // floating point
 public class F32TokenMatcher : TokenMatcher
 {
-    public F32TokenMatcher() : base("F32", TokenType.F32) {}
+    public F32TokenMatcher() : base("f32", TokenType.F32) {}
 }
 
 public class F64TokenMatcher : TokenMatcher
 {
-    public F64TokenMatcher() : base("F64", TokenType.F64) {}
+    public F64TokenMatcher() : base("f64", TokenType.F64) {}
 }
 
 // unsigned int
