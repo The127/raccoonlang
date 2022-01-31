@@ -11,7 +11,7 @@ public abstract class TokenMatcher : ITokenMatcher
         this.type = tokenType;
     }
 
-    public Token Match(string currentText, int line, int column, string fileName)
+    public Token? Match(string currentText, int line, int column, string fileName)
     {
         if (currentText.StartsWith(this.CheckValue)) {
             return new Token(this.type, line, column, CheckValue, fileName);

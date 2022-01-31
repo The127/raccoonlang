@@ -48,7 +48,7 @@ public class Tokenizer
 
     private Token match(string inputFilePath, string inputFileContents, string currentText, int line, int column) {
         foreach (ITokenMatcher tokenMatcher in tokenMatchers) {
-            Token token = tokenMatcher.Match(currentText, line, column, inputFilePath);
+            Token? token = tokenMatcher.Match(currentText, line, column, inputFilePath);
             if (token != null) {
                 return token;
             }
