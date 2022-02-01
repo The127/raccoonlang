@@ -46,6 +46,17 @@ public class ModifiersAstNode {
         }
 
         return node;
-        
+
     }
+
+    public override string ToString()
+    {
+        return "ModifiersAstNode{" +
+                "isPublic=" + isPublic +
+                ", isPrivate=" + isPrivate +
+                ", isProtected=" + isProtected +
+                ", isInternal=" + isInternal +
+                "}";
+    }
+
 }

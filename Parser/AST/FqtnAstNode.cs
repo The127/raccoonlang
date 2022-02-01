@@ -25,6 +25,6 @@ public class FqtnAstNode
     }
 
     public override string ToString() {
-        return "FqtnAstNode{\nidentifiers=" + Identifiers.ToArray() + "\n}";
+        return "FqtnAstNode{identifiers=" + Identifiers.ToArray() + "}";
     }
 }

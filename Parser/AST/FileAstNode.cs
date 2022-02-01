@@ -6,6 +6,6 @@ public class FileAstNode
 {
     public override string ToString()
     {
-        return @"FileAstNode{importsAstNode={";
+        return "FileAstNode{importsAstNode={";
     }
 }
