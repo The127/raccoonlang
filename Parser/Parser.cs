@@ -1,22 +1,22 @@
 namespace Raccoonlang.Parser;
 
-using Raccoonlang.Tokenizer;
+using Tokenizer;
 
 public class Parser
 {
     public class ParserState
     {
-        private int tokenIndex = 0;
+        public int TokenIndex {get;}
 
         public ParserState(int tokenIndex)
         {
-            this.tokenIndex = tokenIndex;
+            this.TokenIndex = tokenIndex;
         }
     }
 
     private TokenStream tokenStream;
 
-    public Parser(TokenStrem stream)
+    public Parser(TokenStream stream)
     {
         this.tokenStream = stream;
     }
@@ -43,12 +43,12 @@ public class Parser
 
     public ParserState ShelfState()
     {
-        return new ParserState(tokenStream.GetPosition());
+        return new ParserState(tokenStream.Position);
     }
 
     public void RestoreState(ParserState state)
     {
-        tokenStream.Seek(state.tokenIndex);
+        tokenStream.Peek(state.TokenIndex);
     }
 
     // public static FileAstNode Parse(TokenStream stream)

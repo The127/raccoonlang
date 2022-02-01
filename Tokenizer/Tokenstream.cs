@@ -60,4 +60,9 @@ public class TokenStream : ITokenStream
         this.Position = pos;
         return res;
     }
+
+    public void Seek(int pos)
+    {
+        this.Position = pos;
+    }
 }
