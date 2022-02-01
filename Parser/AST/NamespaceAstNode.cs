@@ -4,7 +4,7 @@ using Tokenizer;
 
 public class NamespaceAstNode
 {
-    public FqtnAstNode Node {get; private set;}
+    public FqtnAstNode? Node {get; private set;}
 
     public static NamespaceAstNode? TryParse(Parser parser)
     {

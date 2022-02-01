@@ -20,7 +20,7 @@ public class ImportsAstNode
 
 public class ImportAstNode
 {
-    public FqtnAstNode ImportTypeName {get;private set;}
+    public FqtnAstNode? ImportTypeName {get;private set;}
 
     public static ImportAstNode Parse(Parser parser)
     {

@@ -38,7 +38,7 @@ public class GenericTypeConstraintsAstNode
         GenericTypeConstraintsAstNode node = new GenericTypeConstraintsAstNode();
 
         while(true) {
-            GenericTypeConstraintAstNode gNode = GenericTypeConstraintAstNode.TryParse(parser);
+            GenericTypeConstraintAstNode? gNode = GenericTypeConstraintAstNode.TryParse(parser);
             if (gNode == null) break;
 
             node.constraintList.Add(gNode);
