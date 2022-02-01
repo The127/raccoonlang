@@ -31,7 +31,7 @@ public class Parser
         return this.tokenStream.Peek(peek);
     }
 
-    public Token take()
+    public Token Take()
     {
         return this.tokenStream.Take();
     }
@@ -48,7 +48,7 @@ public class Parser
 
     public void RestoreState(ParserState state)
     {
-        tokenStream.Peek(state.TokenIndex);
+        tokenStream.Seek(state.TokenIndex);
     }
 
     // public static FileAstNode Parse(TokenStream stream)
