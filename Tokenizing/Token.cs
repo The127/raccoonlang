@@ -28,4 +28,9 @@ public class Token
         this.FileName = fileName;
         this.Skip = skip;
     }
+
+    public override string ToString()
+    {
+        return $"Token{{Type={Type}, Line={Line}, Column={Column}, Text={(Text == null ? "" : $"'{Text}'")}, FileName={FileName}, Skip={Skip}}}";
+    }
 }
