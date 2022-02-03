@@ -24,7 +24,5 @@ class Raccoonlang
         Console.WriteLine("amount of tokens: {0}", stream.Size());
         FileAstNode ast = Parser.Parse((TokenStream) stream);
         Console.WriteLine(ast);
-
-
     }
 }
