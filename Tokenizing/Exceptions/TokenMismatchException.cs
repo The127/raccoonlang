@@ -5,5 +5,5 @@ using System;
 public class TokenMismatchException : Exception
 {
     public TokenMismatchException(Token token, TokenType type)
-    : base($"Expected `{type}` but got `{token.Type}` instead.") {}
+    : base($"{token.FileName}:{token.Line}:{token.Column} | Expected `{type}` but got `{token.Type}` instead.") {}
 }
