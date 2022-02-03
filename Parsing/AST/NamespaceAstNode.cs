@@ -13,7 +13,8 @@ public class NamespaceAstNode
         }
 
         NamespaceAstNode node = new NamespaceAstNode();
-        parser.Take();
+        parser.Take(TokenType.NAMESPACE);
+        parser.Take(TokenType.WHITE_SPACE);
         node.Node = FqtnAstNode.Parse(parser);
         parser.Take(TokenType.SEMICOLON);
 
