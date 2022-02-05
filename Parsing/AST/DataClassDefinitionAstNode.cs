@@ -20,6 +20,7 @@ public class DataClassDefinitionAstNode
         node.modifiers = ModifiersAstNode.Parse(parser);
 
         if (parser.Peek().Type != TokenType.DATA) {
+            Console.WriteLine("Restored state in DataClassDefinition");
             parser.RestoreState(state);
             return null;
         }

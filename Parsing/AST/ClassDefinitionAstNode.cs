@@ -19,6 +19,7 @@ public class ClassDefinitionAstNode
         node.modifiers = ModifiersAstNode.Parse(parser);
 
         if (parser.Peek().Type != TokenType.CLASS) {
+            Console.WriteLine("Restored state in ClassDefinition");
             parser.RestoreState(state);
             return null;
         }

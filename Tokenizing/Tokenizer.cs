@@ -23,7 +23,7 @@ public class Tokenizer
             new NumberLiteralTokenMatcher(),
 
             // medium priority
-            new TokenMatchers.LambdaArrowTokenMatcher(),
+            new LambdaArrowTokenMatcher(),
 
             new PlusEqualsTokenMatcher(),
             new MinusEqualsTokenMatcher(),
@@ -133,7 +133,7 @@ public class Tokenizer
                 continue;
             }
 
-            Token matchedToken = match(inputFilePath, inputFileContents, currentString, line, column);
+            Token matchedToken = this.Match(inputFilePath, inputFileContents, currentString, line, column);
             if (!matchedToken.Skip) {
                 tokenList.Add(matchedToken);
             }
@@ -144,14 +144,16 @@ public class Tokenizer
 
         }
 
+        tokenList.Add(new Token(TokenType.EOF, line, column, "\0", inputFilePath)); // specify end of file otherwise we crash
         return new TokenStream(inputFilePath, tokenList);
 
     }
 
-    private Token match(string inputFilePath, string inputFileContents, string currentText, int line, int column) {
+    private Token Match(string inputFilePath, string inputFileContents, string currentText, int line, int column) {
         foreach (ITokenMatcher tokenMatcher in tokenMatchers) {
             Token? token = tokenMatcher.Match(currentText, line, column, inputFilePath);
             if (token != null) {
+                Console.WriteLine(tokenMatcher);
                 return token;
             }
         }

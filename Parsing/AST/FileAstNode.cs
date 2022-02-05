@@ -12,8 +12,8 @@ public class FileAstNode
     {
         FileAstNode node = new FileAstNode();
 
-        node.imports = ImportsAstNode.Parse(parser);
         node.nameSpace = NamespaceAstNode.TryParse(parser);
+        node.imports = ImportsAstNode.Parse(parser);
         node.typedefs = TypeDefinitionsAstNode.Parse(parser);
 
         return node;
@@ -22,9 +22,9 @@ public class FileAstNode
     public override string ToString()
     {
         return "FileAstNode{"+
-                "imports="+          (imports == null ? "" : imports.ToString()) +
-                ", nameSpace=" + (nameSpace == null ? "" : nameSpace.ToString()) +
-                ", typedefs=" +    (typedefs == null ? "" : typedefs.ToString()) +
+                "imports="+ (imports == null ? "null" : string.Join(", ", imports.ImportNodes)) +
+                ", nameSpace=" + (nameSpace == null ? "null" : (nameSpace.Node == null ? "''": string.Join(", ", nameSpace.Node.Identifiers))) +
+                ", typedefs=" + (typedefs == null ? "null" : string.Join(", ", typedefs.nodeList)) +
                 "}";
     }
 }

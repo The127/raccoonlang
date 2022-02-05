@@ -32,6 +32,7 @@ public class TokenStream : ITokenStream
             return new Token(TokenType.EOF, eofLine, eofCol, "\n", this.FilePath);
         }
 
+        Console.WriteLine("Pos before take: {0}", this.Position);
         Console.WriteLine("take: {0}", this.tokenList[Position].ToString());
 
         return this.tokenList[Position++];

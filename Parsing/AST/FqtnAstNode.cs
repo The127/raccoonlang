@@ -20,11 +20,11 @@ public class FqtnAstNode
         }
 
         node.Node = GenericTypesAstNode.TryParse(parser);
-        if (node.Node == null) throw new NullReferenceException("Node is null!");
+        if (node.Node == null) Console.WriteLine("Could not find generic!");
         return node;
     }
 
     public override string ToString() {
-        return "FqtnAstNode{identifiers=" + Identifiers.ToArray() + "}";
+        return "FqtnAstNode{identifiers=" + string.Join(",", Identifiers) + "}";
     }
 }

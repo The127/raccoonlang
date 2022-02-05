@@ -56,7 +56,7 @@ public class Parser
     {
         Parser parser = new Parser(stream);
         FileAstNode node = FileAstNode.Parse(parser);
-        parser.Take(TokenType.EOF);
+        //parser.Take(TokenType.EOF);
         return node;
     }
 }

@@ -17,7 +17,7 @@ public class DataTokenMatcher : TokenMatcher
 
 public class FalseTokenMatcher : TokenMatcher
 {
-    public FalseTokenMatcher() : base("data", TokenType.FALSE) {}
+    public FalseTokenMatcher() : base("false", TokenType.FALSE) {}
 }
 
 public class FnTokenMatcher : TokenMatcher

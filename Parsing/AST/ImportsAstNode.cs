@@ -4,7 +4,7 @@ using Tokenizing;
 
 public class ImportsAstNode
 {
-    List<ImportAstNode> ImportNodes = new List<ImportAstNode>();
+    public List<ImportAstNode> ImportNodes = new List<ImportAstNode>();
 
     public static ImportsAstNode Parse(Parser parser)
     {

@@ -19,8 +19,8 @@ public class FunctionDefinitionAstNode
         FunctionDefinitionAstNode node = new FunctionDefinitionAstNode();
 
         if (parser.Peek().Type != TokenType.FN) {
+            Console.WriteLine("Restored state in FunctionDefinition");
             parser.RestoreState(state);
-            Console.WriteLine("function");
             return null;
         }
 

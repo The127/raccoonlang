@@ -18,6 +18,7 @@ public class InterfaceDefinitionAstNode
         node.modifiers = ModifiersAstNode.Parse(parser);
 
         if (parser.Peek().Type != TokenType.INTERFACE) {
+            Console.WriteLine("Restored state in InterfaceDefinition");
             parser.RestoreState(state);
             return null;
         }

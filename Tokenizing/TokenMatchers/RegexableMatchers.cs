@@ -27,5 +27,5 @@ public class MultiLineCommentTokenMatcher : RegexableTokenMatcher
 
 public class CommentTokenMatcher : RegexableTokenMatcher
 {
-    public CommentTokenMatcher() : base("(//.*)\n", TokenType.COMMENT) {}
+    public CommentTokenMatcher() : base(@"(//.*)\n", TokenType.COMMENT) {}
 }
