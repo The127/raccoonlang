@@ -4,22 +4,22 @@ using Tokenizing;
 
 public class GenericTypesAstNode
 {
-    public List<Token> GenericTypeNames = new List<Token>();
+    public List<Token> GenericTypeNames { get; set; } = new List<Token>();
 
     public static GenericTypesAstNode? TryParse(Parser parser)
     {
-        if (parser.Peek().Type != TokenType.OP_LT) return null;
-
-        parser.Skip();
+        if (parser.Peek().Type != TokenType.OpLt) return null;
+        parser.Take(TokenType.OpLt);
 
         GenericTypesAstNode node = new GenericTypesAstNode();
 
-        while (parser.Peek().Type == TokenType.COMMA) {
-            parser.Skip();
-            node.GenericTypeNames.Add(parser.Take(TokenType.IDENTIFIER));
+        node.GenericTypeNames.Add(parser.Take(TokenType.Identifier));
+        while (parser.Peek().Type == TokenType.Comma) {
+            parser.Take(TokenType.Comma);
+            node.GenericTypeNames.Add(parser.Take(TokenType.Identifier));
         }
 
-        parser.Take(TokenType.OP_GT);
+        parser.Take(TokenType.OpGt);
         return node;
     }
 

@@ -2,31 +2,32 @@ namespace Raccoonlang.Parsing.AST;
 
 using Tokenizing;
 
-public class ClassDefinitionAstNode
+public class ClassDefinitionAstNode : ITypeDef
 {
-    public ModifiersAstNode? modifiers;
-    public Token? name;
-    public GenericTypesAstNode? genericTypes;
-    public GenericTypeConstraintsAstNode? genericConstraints;
-    public ClassBodyAstNode? bodyContainer;
+    public ModifiersAstNode? Modifiers { get; set; }
+    public Token? Name { get; set; }
+    public GenericTypesAstNode? GenericTypes{ get; set; }
+    public GenericTypeConstraintsAstNode? GenericConstraints { get; set; }
+    public ClassBodyAstNode? BodyContainer { get; set; }
 
     public static ClassDefinitionAstNode? TryParse(Parser parser)
     {
-        
         ClassDefinitionAstNode node = new ClassDefinitionAstNode();
 
-        node.modifiers = ModifiersAstNode.Parse(parser);
+        var parserState = parser.ShelfState();
+        node.Modifiers = ModifiersAstNode.Parse(parser);
 
-        if (parser.Peek(1).Type != TokenType.CLASS) return null;
+        if (parser.Peek().Type != TokenType.Class)
+        {
+            parser.RestoreState(parserState);
+            return null;
+        }
+        parser.Take(TokenType.Class);
 
-        node.modifiers = ModifiersAstNode.Parse(parser);
-
-        parser.Skip(); // skip the class token 
-
-        node.name = parser.Take(TokenType.IDENTIFIER);
-        node.genericTypes = GenericTypesAstNode.TryParse(parser);
-        node.genericConstraints = GenericTypeConstraintsAstNode.Parse(parser);
-        node.bodyContainer = ClassBodyAstNode.Parse(parser);
+        node.Name = parser.Take(TokenType.Identifier);
+        node.GenericTypes = GenericTypesAstNode.TryParse(parser);
+        node.GenericConstraints = GenericTypeConstraintsAstNode.Parse(parser);
+        node.BodyContainer = ClassBodyAstNode.Parse(parser);
 
         return node;
     }

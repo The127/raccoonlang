@@ -4,30 +4,27 @@ using Tokenizing;
 
 public class ClassBodyAstNode
 {
-    public List<ClassMemberAstNode> memberList = new List<ClassMemberAstNode>();
+    public List<ClassMemberAstNode> MemberList { get; set; } = new List<ClassMemberAstNode>();
 
     public static ClassBodyAstNode Parse(Parser parser)
     {
         ClassBodyAstNode node = new ClassBodyAstNode();
 
-        parser.Take(TokenType.OPEN_CURLY);
-
-        while(true) {
-            ClassMemberAstNode? memberNode = ClassMemberAstNode.TryParse(parser);
-            if (memberNode == null) break;
-            node.memberList.Add(memberNode);
+        parser.Take(TokenType.OpenCurly);
+        while(parser.Peek().Type != TokenType.CloseCurly) {
+            node.MemberList.Add(ClassMemberAstNode.Parse(parser));
         }
-
+        
         return node;
     }
 }
 
 public class ClassMemberAstNode
 {
-    public static ClassMemberAstNode? TryParse(Parser parser)
+    public static ClassMemberAstNode Parse(Parser parser)
     {
         ClassMemberAstNode node = new ClassMemberAstNode();
-
+        //TODO
         return node;
     }
 }

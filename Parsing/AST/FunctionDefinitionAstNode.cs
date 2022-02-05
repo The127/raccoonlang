@@ -2,33 +2,37 @@ namespace Raccoonlang.Parsing.AST;
 
 using Tokenizing;
 
-public class FunctionDefinitionAstNode
+public class FunctionDefinitionAstNode : ITypeDef
 {
-    public ModifiersAstNode? modifiers;
-    public FqtnAstNode? returnType;
-    public Token? name;
-    public GenericTypesAstNode? genericTypes;
-    public FunctionParametersAstNode? param;
-    public GenericTypeConstraintsAstNode? genericConstraints;
-    public FunctionBodyAstNode? bodyContainer;
+    public ModifiersAstNode? Modifiers { get; set; }
+    public FqtnAstNode? ReturnType { get; set; }
+    public Token? Name { get; set; }
+    public GenericTypesAstNode? GenericTypes { get; set; }
+    public FunctionParametersAstNode? Param { get; set; }
+    public GenericTypeConstraintsAstNode? GenericConstraints { get; set; }
+    public FunctionBodyAstNode? BodyContainer { get; set; }
 
     public static FunctionDefinitionAstNode? TryParse(Parser parser)
     {
 
         FunctionDefinitionAstNode node = new FunctionDefinitionAstNode();
 
-        if (parser.Peek(1).Type != TokenType.FN) return null;
+        var parserState = parser.ShelfState();
+        node.Modifiers = ModifiersAstNode.Parse(parser);
 
-        node.modifiers = ModifiersAstNode.Parse(parser);
+        if (parser.Peek().Type != TokenType.Fn)
+        {
+            parser.RestoreState(parserState);
+            return null;
+        }
+        parser.Take(TokenType.Fn);
 
-        parser.Skip(); // skip the fn token
-
-        node.returnType = FqtnAstNode.Parse(parser);
-        node.name = parser.Take(TokenType.IDENTIFIER);
-        node.genericTypes = GenericTypesAstNode.TryParse(parser);
-        node.param = FunctionParametersAstNode.Parse(parser);
-        node.genericConstraints = GenericTypeConstraintsAstNode.Parse(parser);
-        node.bodyContainer = FunctionBodyAstNode.Parse(parser);
+        node.ReturnType = FqtnAstNode.Parse(parser);
+        node.Name = parser.Take(TokenType.Identifier);
+        node.GenericTypes = GenericTypesAstNode.TryParse(parser);
+        node.Param = FunctionParametersAstNode.Parse(parser);
+        node.GenericConstraints = GenericTypeConstraintsAstNode.Parse(parser);
+        node.BodyContainer = FunctionBodyAstNode.Parse(parser);
 
         return node;
     }

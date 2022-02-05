@@ -5,22 +5,21 @@ using Tokenizing;
 // fully qualified type name
 public class FqtnAstNode 
 {
-    public List<Token> Identifiers = new List<Token>();
-    public GenericTypesAstNode? Node;
+    public List<Token> Identifiers { get; set; } = new List<Token>();
+    public GenericTypesAstNode? GenericTypesAstNode { get; set; }
 
     public static FqtnAstNode Parse(Parser parser)
     {
         FqtnAstNode node = new FqtnAstNode();
 
-        node.Identifiers.Add(parser.Take(TokenType.IDENTIFIER));
+        node.Identifiers.Add(parser.Take(TokenType.Identifier));
 
-        while(parser.Peek().Type == TokenType.DOT) {
-            parser.Skip();
-            node.Identifiers.Add(parser.Take(TokenType.IDENTIFIER));
+        while(parser.Peek().Type == TokenType.Dot) {
+            parser.Take(TokenType.Dot);
+            node.Identifiers.Add(parser.Take(TokenType.Identifier));
         }
 
-        node.Node = GenericTypesAstNode.TryParse(parser);
-        if (node.Node == null) Console.WriteLine("Could not find a generic here! This might be right, or wrong, check source!");
+        node.GenericTypesAstNode = GenericTypesAstNode.TryParse(parser);
         return node;
     }
 

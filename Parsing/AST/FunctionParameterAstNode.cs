@@ -4,26 +4,28 @@ using Tokenizing;
 
 public class FunctionParameterAstNode
 {
-    public FqtnAstNode? paramType;
-    public Token? paramName;
+    public FqtnAstNode? ParamType { get; set; }
+    public Token? ParamName { get; set; }
 
     public static FunctionParameterAstNode Parse(Parser parser)
     {
         FunctionParameterAstNode node = new FunctionParameterAstNode();
-        node.paramType = FqtnAstNode.Parse(parser);
-        parser.Skip();
-        node.paramName = parser.Take(TokenType.IDENTIFIER);
+        node.ParamType = FqtnAstNode.Parse(parser);
+        node.ParamName = parser.Take(TokenType.Identifier);
         return node;
     }
 
     public override string ToString()
-    {   
-        if (paramType != null && paramName != null) {
+    {
+        if (ParamType != null && ParamName != null)
+        {
             return "FunctionParameterAstNode{" +
-                    "paramType=" + paramType.ToString() +
-                    ", paramName=" + paramName.ToString() +
-                    "}";
-        } else {
+                   "paramType=" + ParamType.ToString() +
+                   ", paramName=" + ParamName.ToString() +
+                   "}";
+        }
+        else
+        {
             return "FunctionParameterAstNode{}";
         }
     }
@@ -31,32 +33,32 @@ public class FunctionParameterAstNode
 
 public class FunctionParametersAstNode
 {
-    public List<FunctionParameterAstNode> paramList = new List<FunctionParameterAstNode>();
+    public List<FunctionParameterAstNode> ParamList { get; set; } = new List<FunctionParameterAstNode>();
 
     public static FunctionParametersAstNode Parse(Parser parser)
     {
         FunctionParametersAstNode node = new FunctionParametersAstNode();
 
-        parser.Take(TokenType.OPEN_PAREN);
+        parser.Take(TokenType.OpenParen);
 
-        if (parser.Peek().Type != TokenType.CLOSE_PAREN) {
-
-            node.paramList.Add(FunctionParameterAstNode.Parse(parser));
-
-            do {
-                parser.Skip(2);
-                node.paramList.Add(FunctionParameterAstNode.Parse(parser));
-            } while(parser.Peek(1).Type == TokenType.COMMA);
+        if (parser.Peek().Type != TokenType.CloseParen)
+        {
+            node.ParamList.Add(FunctionParameterAstNode.Parse(parser));
+            while (parser.Peek().Type == TokenType.Comma)
+            {
+                parser.Take(TokenType.Comma);
+                node.ParamList.Add(FunctionParameterAstNode.Parse(parser));
+            }
         }
 
-        parser.Take(TokenType.CLOSE_PAREN);
+        parser.Take(TokenType.CloseParen);
         return node;
     }
 
     public override string ToString()
     {
         return "FunctionParametersAstNode{" +
-                "paramList=" + paramList.ToArray().ToString() +
-                "}";
+               "paramList=" + ParamList.ToArray().ToString() +
+               "}";
     }
 }

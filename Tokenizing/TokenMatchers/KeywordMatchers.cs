@@ -2,90 +2,90 @@ namespace Raccoonlang.Tokenizing.TokenMatchers;
 
 public class BoolTokenMatcher : TokenMatcher
 {
-    public BoolTokenMatcher() : base("bool", TokenType.BOOL) {}
+    public BoolTokenMatcher() : base("bool", TokenType.Bool) {}
 }
 
 public class ClassTokenMatcher : TokenMatcher
 {
-    public ClassTokenMatcher() : base("class", TokenType.CLASS) {}
+    public ClassTokenMatcher() : base("class", TokenType.Class) {}
 }
 
 public class DataTokenMatcher : TokenMatcher
 {
-    public DataTokenMatcher() : base("data", TokenType.DATA) {}
+    public DataTokenMatcher() : base("data", TokenType.Data) {}
 }
 
 public class FalseTokenMatcher : TokenMatcher
 {
-    public FalseTokenMatcher() : base("false", TokenType.FALSE) {}
+    public FalseTokenMatcher() : base("false", TokenType.False) {}
 }
 
 public class FnTokenMatcher : TokenMatcher
 {
-    public FnTokenMatcher() : base("fn", TokenType.FN) {}
+    public FnTokenMatcher() : base("fn", TokenType.Fn) {}
 }
 
 public class ImportTokenMatcher : TokenMatcher
 {
-    public ImportTokenMatcher() : base("import", TokenType.IMPORT) {}
+    public ImportTokenMatcher() : base("import", TokenType.Import) {}
 }
 
 public class InterfaceTokenMatcher : TokenMatcher
 {
-    public InterfaceTokenMatcher() : base("interface", TokenType.INTERFACE) {}
+    public InterfaceTokenMatcher() : base("interface", TokenType.Interface) {}
 }
 
 public class InternalTokenMatcher : TokenMatcher
 {
-    public InternalTokenMatcher() : base("internal", TokenType.INTERNAL) {}
+    public InternalTokenMatcher() : base("internal", TokenType.Internal) {}
 }
 
 public class NamespaceTokenMatcher : TokenMatcher
 {
-    public NamespaceTokenMatcher() : base("namespace", TokenType.NAMESPACE) {}
+    public NamespaceTokenMatcher() : base("namespace", TokenType.Namespace) {}
 }
 
 public class NewTokenMatcher : TokenMatcher
 {
-    public NewTokenMatcher() : base("new", TokenType.NEW) {}
+    public NewTokenMatcher() : base("new", TokenType.New) {}
 }
 
 public class PrivateTokenMatcher : TokenMatcher
 {
-    public PrivateTokenMatcher() : base("private", TokenType.PRIVATE) {}
+    public PrivateTokenMatcher() : base("private", TokenType.Private) {}
 }
 
 public class ProtectedTokenMatcher : TokenMatcher
 {
-    public ProtectedTokenMatcher() : base("protected", TokenType.PROTECTED) {}
+    public ProtectedTokenMatcher() : base("protected", TokenType.Protected) {}
 }
 
 public class PublicTokenMatcher : TokenMatcher
 {
-    public PublicTokenMatcher() : base("public", TokenType.PUBLIC) {}
+    public PublicTokenMatcher() : base("public", TokenType.Public) {}
 }
 
 public class StringTokenMatcher : TokenMatcher
 {
-    public StringTokenMatcher() : base("string", TokenType.STRING) {}
+    public StringTokenMatcher() : base("string", TokenType.String) {}
 }
 
 public class TrueTokenMatcher : TokenMatcher
 {
-    public TrueTokenMatcher() : base("true", TokenType.TRUE) {}
+    public TrueTokenMatcher() : base("true", TokenType.True) {}
 }
 
 public class VarTokenMatcher : TokenMatcher
 {
-    public VarTokenMatcher() : base("var", TokenType.VAR) {}
+    public VarTokenMatcher() : base("var", TokenType.Var) {}
 }
 
 public class WhereTokenMatcher : TokenMatcher
 {
-    public WhereTokenMatcher() : base("where", TokenType.WHERE) {}
+    public WhereTokenMatcher() : base("where", TokenType.Where) {}
 }
 
 public class LambdaArrowTokenMatcher : TokenMatcher
 {
-    public LambdaArrowTokenMatcher() : base("=>", TokenType.LAMBDA_ARROW) {}
+    public LambdaArrowTokenMatcher() : base("=>", TokenType.LambdaArrow) {}
 }

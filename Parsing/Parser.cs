@@ -15,21 +15,21 @@ public class Parser
         }
     }
 
-    private TokenStream tokenStream;
+    private TokenStream _tokenStream;
 
     public Parser(TokenStream stream)
     {
-        this.tokenStream = stream;
+        this._tokenStream = stream;
     }
 
     public void Skip()
     {
-        this.tokenStream.Skip();
+        this._tokenStream.Skip();
     }
 
     public void Skip(int skipAmount)
     {
-        this.tokenStream.Skip(skipAmount);
+        this._tokenStream.Skip(skipAmount);
     }
 
         public Token Peek()
@@ -39,32 +39,32 @@ public class Parser
 
     public Token Peek(int peek) 
     {
-        return this.tokenStream.Peek(peek);
+        return this._tokenStream.Peek(peek);
     }
 
     public Token Take()
     {
-        return this.tokenStream.Take();
+        return this._tokenStream.Take();
     }
 
     public Token Take(TokenType tokenType) 
     {
-        return this.tokenStream.Take(tokenType);
+        return this._tokenStream.Take(tokenType);
     }
 
     public ParserState ShelfState()
     {
-        return new ParserState(tokenStream.Position);
+        return new ParserState(_tokenStream.Position);
     }
 
     public void RestoreState(ParserState state)
     {
-        tokenStream.Seek(state.TokenIndex);
+        _tokenStream.Seek(state.TokenIndex);
     }
 
     public void PrintCurrent()
     {
-        Console.WriteLine(this.tokenStream.Current());
+        Console.WriteLine(this._tokenStream.Current());
     }
 
     public static FileAstNode Parse(TokenStream stream)

@@ -4,17 +4,17 @@ using Tokenizing;
 
 public class FileAstNode
 {
-    public ImportsAstNode? imports;
-    public NamespaceAstNode? nameSpace;
-    public TypeDefinitionsAstNode? typedefs;
+    public ImportsAstNode Imports { get; set; }
+    public NamespaceAstNode? NameSpace { get; set; }
+    public TypeDefinitionsAstNode Typedefs { get; set; }
 
     public static FileAstNode Parse(Parser parser)
     {
         FileAstNode node = new FileAstNode();
 
-        node.nameSpace = NamespaceAstNode.TryParse(parser);
-        node.imports = ImportsAstNode.Parse(parser);
-        node.typedefs = TypeDefinitionsAstNode.Parse(parser);
+        node.NameSpace = NamespaceAstNode.TryParse(parser);
+        node.Imports = ImportsAstNode.Parse(parser);
+        node.Typedefs = TypeDefinitionsAstNode.Parse(parser);
 
         return node;
     }
@@ -22,9 +22,9 @@ public class FileAstNode
     public override string ToString()
     {
         return "FileAstNode{"+
-                "imports="+ (imports == null ? "null" : string.Join(", ", imports.ImportNodes)) +
-                ", nameSpace=" + (nameSpace == null ? "null" : (nameSpace.Node == null ? "''": string.Join(", ", nameSpace.Node.Identifiers))) +
-                ", typedefs=" + (typedefs == null ? "null" : string.Join(", ", typedefs.nodeList)) +
+                "imports="+ (Imports == null ? "null" : string.Join(", ", Imports.ImportNodes)) +
+                ", nameSpace=" + (NameSpace == null ? "null" : (NameSpace.Node == null ? "''": string.Join(", ", NameSpace.Node.Identifiers))) +
+                ", typedefs=" + (Typedefs == null ? "null" : string.Join(", ", Typedefs.NodeList)) +
                 "}";
     }
 }

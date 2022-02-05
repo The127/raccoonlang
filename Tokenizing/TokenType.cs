@@ -2,67 +2,67 @@ namespace Raccoonlang.Tokenizing;
 
 public enum TokenType
 {
-    OPEN_PAREN,     // (
-    CLOSE_PAREN,    // )
-    OPEN_CURLY,     // {
-    CLOSE_CURLY,    // }
-    OPEN_SQUARE,    // [
-    CLOSE_SQUARE,   // ]
+    OpenParen,     // (
+    CloseParen,    // )
+    OpenCurly,     // {
+    CloseCurly,    // }
+    OpenSquare,    // [
+    CloseSquare,   // ]
 
-    DOT,            // .
-    COMMA,          // ,
-    SEMICOLON,      // ;
-    COLON,          // :
+    Dot,            // .
+    Comma,          // ,
+    Semicolon,      // ;
+    Colon,          // :
 
-    EQUALS,         // =
-    PLUS_EQUALS,    // +=
-    MINUS_EQUALS,   // -=
-    TIMES_EQUALS,   // *=
-    DIVISION_EQUALS,// /=
-    MODULO_EQUALS,  // %=
-    AND_EQUALS,     // &=
-    OR_EQUALS,      // |=
-    XOR_EQUALS,     // ^=
+    Equals,         // =
+    PlusEquals,    // +=
+    MinusEquals,   // -=
+    TimesEquals,   // *=
+    DivisionEquals,// /=
+    ModuloEquals,  // %=
+    AndEquals,     // &=
+    OrEquals,      // |=
+    XorEquals,     // ^=
 
-    OP_PLUS,        // +
-    OP_MINUS,       // -
-    OP_TIMES,       // *
-    OP_DIVISION,    // /
-    OP_MODULO,      // %
-    OP_BIN_AND,     // &
-    OP_BIN_OR,      // |
-    OP_BOOL_AND,    // &&
-    OP_BOOL_OR,     // ||
-    OP_XOR,         // ^
+    OpPlus,        // +
+    OpMinus,       // -
+    OpTimes,       // *
+    OpDivision,    // /
+    OpModulo,      // %
+    OpBinAnd,     // &
+    OpBinOr,      // |
+    OpBoolAnd,    // &&
+    OpBoolOr,     // ||
+    OpXor,         // ^
 
-    OP_LT,          // <
-    OP_GT,          // >
+    OpLt,          // <
+    OpGt,          // >
 
-    OVERLOAD_PLUS,
-    OVERLOAD_MINUS,
-    OVERLOAD_TIMES,
-    OVERLOAD_DIVISION,
-    OVERLOAD_MODULO,
+    OverloadPlus,
+    OverloadMinus,
+    OverloadTimes,
+    OverloadDivision,
+    OverloadModulo,
 
-    OP_NOT,         // !
+    OpNot,         // !
 
-    LAMBDA_ARROW,   // =>
+    LambdaArrow,   // =>
 
-    WHERE,
-    NEW,
+    Where,
+    New,
 
-    PUBLIC,
-    PRIVATE,
-    PROTECTED,
-    INTERNAL,
-    OVERRIDE, //TODO
+    Public,
+    Private,
+    Protected,
+    Internal,
+    Override, //TODO
 
-    DATA,
-    CLASS,
-    INTERFACE,
-    FN,
-    IDENTIFIER,
-    VAR,
+    Data,
+    Class,
+    Interface,
+    Fn,
+    Identifier,
+    Var,
 
     // temporarily removed
     // F64,
@@ -78,21 +78,21 @@ public enum TokenType
     // U32,
     // U64,
 
-    BOOL,
-    TRUE,
-    FALSE,
+    Bool,
+    True,
+    False,
 
-    STRING,
-    STRING_LITERAL, // "
+    String,
+    StringLiteral, // "
 
-    NUMBER_LITERAL,
+    NumberLiteral,
 
-    NAMESPACE,
-    IMPORT,        // for import stuff
+    Namespace,
+    Import,        // for import stuff
 
-    COMMENT,
-    MULTI_LINE_COMMENT,
-    WHITE_SPACE,
-    EOF,
+    Comment,
+    MultiLineComment,
+    WhiteSpace,
+    Eof,
 
 }

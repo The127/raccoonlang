@@ -9,17 +9,17 @@ public class TokenStream : ITokenStream
 
     public int Position {get; private set;}
     public string FilePath {get;}
-    private List<Token> tokenList = new List<Token>();
+    private List<Token> _tokenList = new List<Token>();
 
     public TokenStream(string filePath, List<Token> tokenList) 
     {
         this.FilePath = filePath;
-        this.tokenList = tokenList;
+        this._tokenList = tokenList;
     }
 
     public Token Current()
     {
-        return this.tokenList[this.Position];
+        return this._tokenList[this.Position];
     }
 
     public Token Take()
@@ -28,18 +28,18 @@ public class TokenStream : ITokenStream
             int eofLine = 0;
             int eofCol = 0;
 
-            if (tokenList.Count() > 0 ) {
-                Token lastToken = tokenList[tokenList.Count()-1];
+            if (_tokenList.Count() > 0 ) {
+                Token lastToken = _tokenList[_tokenList.Count()-1];
                 eofLine = lastToken.Line;
                 eofCol = lastToken.Column + lastToken.Text.Length;
             }
 
-            return new Token(TokenType.EOF, eofLine, eofCol, "\n", this.FilePath);
+            return new Token(TokenType.Eof, eofLine, eofCol, "\n", this.FilePath);
         }
 
-        Console.WriteLine("take: {0}", this.tokenList[Position].ToString());
+        Console.WriteLine("take: {0}", this._tokenList[Position].ToString());
 
-        return this.tokenList[Position++];
+        return this._tokenList[Position++];
     }
 
     public Token Take(TokenType tokenType)
@@ -54,7 +54,7 @@ public class TokenStream : ITokenStream
 
     public int Size()
     {
-        return this.tokenList.Count();
+        return this._tokenList.Count();
     }
 
     public void Skip()
@@ -69,7 +69,7 @@ public class TokenStream : ITokenStream
 
     public Token Peek(int peekOffset)
     {
-        return this.tokenList[Position+peekOffset];
+        return this._tokenList[Position+peekOffset];
     }
 
     public void Seek(int pos)

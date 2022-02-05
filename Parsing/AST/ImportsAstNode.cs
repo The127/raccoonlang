@@ -4,35 +4,35 @@ using Tokenizing;
 
 public class ImportsAstNode
 {
-    public List<ImportAstNode> ImportNodes = new List<ImportAstNode>();
+    public List<ImportAstNode> ImportNodes { get; set; } = new List<ImportAstNode>();
 
     public static ImportsAstNode Parse(Parser parser)
     {
         ImportsAstNode node = new ImportsAstNode();
 
-        while(parser.Peek().Type == TokenType.IMPORT) {
-            node.ImportNodes.Add(ImportAstNode.Parse(parser));
+        while (true)
+        {
+            var importAstNode = ImportAstNode.TryParse(parser);
+            if (importAstNode == null) return node;
+            node.ImportNodes.Add(importAstNode);
         }
-
-        return node;
     }
 }
 
 public class ImportAstNode
 {
-    public FqtnAstNode? ImportTypeName {get;private set;}
+    public FqtnAstNode? ImportTypeName { get; set; }
 
-    public static ImportAstNode Parse(Parser parser)
+    public static ImportAstNode? TryParse(Parser parser)
     {
-        Parser.ParserState ps = parser.ShelfState();
-
+        if (parser.Peek().Type != TokenType.Import) return null;
+        
         ImportAstNode node = new ImportAstNode();
 
-        parser.Take(TokenType.IMPORT);
+        parser.Take(TokenType.Import);
         node.ImportTypeName = FqtnAstNode.Parse(parser);
-        parser.Take(TokenType.SEMICOLON);
+        parser.Take(TokenType.Semicolon);
 
         return node;
     }
-
 }

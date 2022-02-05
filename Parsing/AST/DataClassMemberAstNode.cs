@@ -2,10 +2,12 @@ namespace Raccoonlang.Parsing.AST;
 
 public class DataClassMemberAstNode
 {
-    public static DataClassMemberAstNode? TryParse(Parser parser)
+    public static DataClassMemberAstNode Parse(Parser parser)
     {
-        //DataClassMemberAstNode node = new DataClassMemberAstNode();
+        DataClassMemberAstNode node = new DataClassMemberAstNode();
 
-        return null;
+         // TODO 
+
+        return node;
     }
 }

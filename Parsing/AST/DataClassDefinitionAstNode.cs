@@ -2,34 +2,35 @@ namespace Raccoonlang.Parsing.AST;
 
 using Tokenizing;
 
-public class DataClassDefinitionAstNode
+public class DataClassDefinitionAstNode : ITypeDef
 {
-    public ModifiersAstNode? modifiers;
-    public Token? name;
-    public GenericTypesAstNode? genericTypes;
-    public FunctionParametersAstNode? parameters;
-    public GenericTypeConstraintsAstNode? genericConstraints;
-    public DataClassBodyAstNode? bodyContainer;
+    public ModifiersAstNode? Modifiers { get; set; }
+    public Token? Name { get; set; }
+    public GenericTypesAstNode? GenericTypes { get; set; }
+    public FunctionParametersAstNode? Parameters { get; set; }
+    public GenericTypeConstraintsAstNode? GenericConstraints { get; set; }
+    public DataClassBodyAstNode? BodyContainer { get; set; }
 
     public static DataClassDefinitionAstNode? TryParse(Parser parser)
     {
         DataClassDefinitionAstNode node = new DataClassDefinitionAstNode();
 
-        if (parser.Peek(1).Type != TokenType.DATA) return null;
+        var parserState = parser.ShelfState();
+        node.Modifiers = ModifiersAstNode.Parse(parser);
 
-        node.modifiers = ModifiersAstNode.Parse(parser);
-
-        parser.Skip(3); // skip the data token and whitespaces
-
-        parser.Take(TokenType.CLASS);
-
-        parser.Skip(); // skip whitespace
-
-        node.name = parser.Take(TokenType.IDENTIFIER);
-        node.genericTypes = GenericTypesAstNode.TryParse(parser);
-        node.parameters = FunctionParametersAstNode.Parse(parser);
-        node.genericConstraints = GenericTypeConstraintsAstNode.Parse(parser);
-        node.bodyContainer = DataClassBodyAstNode.Parse(parser);
+        if (parser.Peek().Type != TokenType.Data)
+        {
+            parser.RestoreState(parserState);
+            return null;
+        }
+        parser.Take(TokenType.Data);
+        parser.Take(TokenType.Class);
+        
+        node.Name = parser.Take(TokenType.Identifier);
+        node.GenericTypes = GenericTypesAstNode.TryParse(parser);
+        node.Parameters = FunctionParametersAstNode.Parse(parser);
+        node.GenericConstraints = GenericTypeConstraintsAstNode.Parse(parser);
+        node.BodyContainer = DataClassBodyAstNode.Parse(parser);
 
         return node;
     }
@@ -37,12 +38,12 @@ public class DataClassDefinitionAstNode
     public override string ToString()
     {
         return "DataClassDefinitionAstNode{" +
-                "modifiersAstNode=" + modifiers +
-                ", name=" + name +
-                ", genericTypesAstNode=" + (genericTypes == null ? "" : genericTypes.ToString()) +
-                ", functionParametersAstNode=" + parameters +
-                ", genericTypeConstraintsAstNode=" + genericConstraints+
-                ", dataClassBodyAstNode=" + bodyContainer +
+                "modifiersAstNode=" + Modifiers +
+                ", name=" + Name +
+                ", genericTypesAstNode=" + (GenericTypes == null ? "" : GenericTypes.ToString()) +
+                ", functionParametersAstNode=" + Parameters +
+                ", genericTypeConstraintsAstNode=" + GenericConstraints+
+                ", dataClassBodyAstNode=" + BodyContainer +
                 "}";
     }
 }

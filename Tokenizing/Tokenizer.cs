@@ -7,7 +7,7 @@ using TokenMatchers;
 
 public class Tokenizer
 {
-    private ITokenMatcher[] tokenMatchers = new ITokenMatcher[]{
+    private ITokenMatcher[] _tokenMatchers = new ITokenMatcher[]{
         
         // highest priority
             new OverloadPlusTokenMatcher(),
@@ -144,16 +144,15 @@ public class Tokenizer
 
         }
 
-        tokenList.Add(new Token(TokenType.EOF, line, column, "\0", inputFilePath)); // specify end of file otherwise we crash
+        tokenList.Add(new Token(TokenType.Eof, line, column, "\0", inputFilePath)); // specify end of file otherwise we crash
         return new TokenStream(inputFilePath, tokenList);
 
     }
 
     private Token Match(string inputFilePath, string inputFileContents, string currentText, int line, int column) {
-        foreach (ITokenMatcher tokenMatcher in tokenMatchers) {
+        foreach (ITokenMatcher tokenMatcher in _tokenMatchers) {
             Token? token = tokenMatcher.Match(currentText, line, column, inputFilePath);
             if (token != null) {
-                Console.WriteLine(tokenMatcher);
                 return token;
             }
         }

@@ -3,66 +3,66 @@ namespace Raccoonlang.Tokenizing.TokenMatchers;
 //binary operators
 public class OpBinAndTokenMatcher : TokenMatcher
 {
-    public OpBinAndTokenMatcher() : base("&", TokenType.OP_BIN_AND) {}
+    public OpBinAndTokenMatcher() : base("&", TokenType.OpBinAnd) {}
 }
 
 public class OpBinOrTokenMatcher : TokenMatcher
 {
-    public OpBinOrTokenMatcher() : base("|", TokenType.OP_BIN_OR) {}
+    public OpBinOrTokenMatcher() : base("|", TokenType.OpBinOr) {}
 }
 
 public class OpNotTokenMatcher : TokenMatcher
 {
-    public OpNotTokenMatcher() : base("!", TokenType.OP_NOT) {}
+    public OpNotTokenMatcher() : base("!", TokenType.OpNot) {}
 }
 
 public class OpXorTokenMatcher : TokenMatcher
 {
-    public OpXorTokenMatcher() : base("^", TokenType.OP_XOR) {}
+    public OpXorTokenMatcher() : base("^", TokenType.OpXor) {}
 }
 
 //boolean operators
 public class OpBoolAndTokenMatcher : TokenMatcher
 {
-    public OpBoolAndTokenMatcher() : base("&&", TokenType.OP_BOOL_AND) {}
+    public OpBoolAndTokenMatcher() : base("&&", TokenType.OpBoolAnd) {}
 }
 
 public class OpBoolOrTokenMatcher : TokenMatcher
 {
-    public OpBoolOrTokenMatcher() : base("||", TokenType.OP_BOOL_OR) {}
+    public OpBoolOrTokenMatcher() : base("||", TokenType.OpBoolOr) {}
 }
 
 public class OpDivisionTokenMatcher : TokenMatcher
 {
-    public OpDivisionTokenMatcher() : base("/", TokenType.OP_DIVISION) {}
+    public OpDivisionTokenMatcher() : base("/", TokenType.OpDivision) {}
 }
 
 public class OpGreaterThanTokenMatcher : TokenMatcher
 {
-    public OpGreaterThanTokenMatcher() : base(">", TokenType.OP_GT) {}
+    public OpGreaterThanTokenMatcher() : base(">", TokenType.OpGt) {}
 }
 
 public class OpSmallerThanTokenMatcher : TokenMatcher
 {
-    public OpSmallerThanTokenMatcher() : base("<", TokenType.OP_LT) {}
+    public OpSmallerThanTokenMatcher() : base("<", TokenType.OpLt) {}
 }
 
 public class OpMinusTokenMatcher : TokenMatcher
 {
-    public OpMinusTokenMatcher() : base("-", TokenType.OP_MINUS) {}
+    public OpMinusTokenMatcher() : base("-", TokenType.OpMinus) {}
 }
 
 public class OpModuloTokenMatcher : TokenMatcher
 {
-    public OpModuloTokenMatcher() : base("%", TokenType.OP_MODULO) {}
+    public OpModuloTokenMatcher() : base("%", TokenType.OpModulo) {}
 }
 
 public class OpPlusTokenMatcher : TokenMatcher
 {
-    public OpPlusTokenMatcher() : base("+", TokenType.OP_PLUS) {}
+    public OpPlusTokenMatcher() : base("+", TokenType.OpPlus) {}
 }
 
 public class OpTimesTokenMatcher : TokenMatcher
 {
-    public OpTimesTokenMatcher() : base("*", TokenType.OP_PLUS) {}
+    public OpTimesTokenMatcher() : base("*", TokenType.OpPlus) {}
 }

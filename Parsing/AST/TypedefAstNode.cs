@@ -1,45 +1,52 @@
 namespace Raccoonlang.Parsing.AST;
 
-public class TypeDefAstNode
-{
-    public InterfaceDefinitionAstNode? interfaceNode;
-    public ClassDefinitionAstNode? classNode;
-    public DataClassDefinitionAstNode? dataNode;
-    public FunctionDefinitionAstNode? funcNode;
-
-    public static TypeDefAstNode? TryParse(Parser parser)
-    {
-        TypeDefAstNode node = new TypeDefAstNode();
-
-        node.interfaceNode = InterfaceDefinitionAstNode.TryParse(parser);
-        if (node.interfaceNode != null) return node;
-
-        node.classNode = ClassDefinitionAstNode.TryParse(parser);
-        if (node.classNode != null) return node;
-
-        node.dataNode = DataClassDefinitionAstNode.TryParse(parser);
-        if (node.dataNode != null) return node;
-
-        node.funcNode = FunctionDefinitionAstNode.TryParse(parser);
-        
-        return (node.funcNode == null) ? null : node; 
-    } 
-}
-
 public class TypeDefinitionsAstNode
 {
-    public List<TypeDefAstNode> nodeList = new List<TypeDefAstNode>();
+    public List<TypeDefAstNode> NodeList { get; set; } = new();
 
     public static TypeDefinitionsAstNode Parse(Parser parser)
     {
         TypeDefinitionsAstNode node = new TypeDefinitionsAstNode();
 
-        while(true) {
+        while (true)
+        {
             TypeDefAstNode? typeNode = TypeDefAstNode.TryParse(parser);
             if (typeNode == null) break;
-            node.nodeList.Add(typeNode); 
+            node.NodeList.Add(typeNode);
         }
 
         return node;
     }
+
+    public override string ToString() => $"TypeDefinitionsAstNode{{{NodeList.ToArray()}}}";
+}
+
+public class TypeDefAstNode
+{
+    public ITypeDef TypeDef { get; set; }
+
+    public static TypeDefAstNode? TryParse(Parser parser)
+    {
+        TypeDefAstNode node = new TypeDefAstNode();
+
+        node.TypeDef = InterfaceDefinitionAstNode.TryParse(parser);
+        if (node.TypeDef != null) return node;
+
+        node.TypeDef = ClassDefinitionAstNode.TryParse(parser);
+        if (node.TypeDef != null) return node;
+
+        node.TypeDef = DataClassDefinitionAstNode.TryParse(parser);
+        if (node.TypeDef != null) return node;
+
+        node.TypeDef = FunctionDefinitionAstNode.TryParse(parser);
+        if (node.TypeDef != null) return node;
+
+        return null;
+    }
+
+    public override string ToString() => $"TypeDefAstNode{{{TypeDef}}}";
+}
+
+public interface ITypeDef
+{
 }

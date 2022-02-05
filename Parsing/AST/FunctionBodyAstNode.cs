@@ -8,9 +8,9 @@ public class FunctionBodyAstNode
     {
         FunctionBodyAstNode node = new FunctionBodyAstNode();
 
-        parser.Take(TokenType.OPEN_CURLY);
+        parser.Take(TokenType.OpenCurly);
         // TODO: actually get body
-        parser.Take(TokenType.CLOSE_CURLY);
+        parser.Take(TokenType.CloseCurly);
 
         return node;
     }

@@ -4,10 +4,10 @@ using Tokenizing;
 using Exception;
 
 public class ModifiersAstNode {
-    bool isPublic;
-    bool isPrivate;
-    bool isProtected;
-    bool isInternal;
+    bool IsPublic { get; set; }
+    bool IsPrivate { get; set; }
+    bool IsProtected { get; set; }
+    bool IsInternal { get; set; }
 
     public static ModifiersAstNode Parse(Parser parser)
     {
@@ -19,21 +19,21 @@ public class ModifiersAstNode {
             Token t = parser.Peek();
 
             switch(t.Type) {
-                case TokenType.PUBLIC:
-                    if(node.isPublic) throw new DuplicateModifierException(t);
-                    node.isPublic = true;
+                case TokenType.Public:
+                    if(node.IsPublic) throw new DuplicateModifierException(t);
+                    node.IsPublic = true;
                     break;
-                case TokenType.PRIVATE:
-                    if(node.isPrivate) throw new DuplicateModifierException(t);
-                    node.isPrivate = true;
+                case TokenType.Private:
+                    if(node.IsPrivate) throw new DuplicateModifierException(t);
+                    node.IsPrivate = true;
                     break;
-                case TokenType.PROTECTED:
-                    if(node.isProtected) throw new DuplicateModifierException(t);
-                    node.isProtected = true;
+                case TokenType.Protected:
+                    if(node.IsProtected) throw new DuplicateModifierException(t);
+                    node.IsProtected = true;
                     break;
-                case TokenType.INTERNAL:
-                    if(node.isInternal) throw new DuplicateModifierException(t);
-                    node.isInternal = true;
+                case TokenType.Internal:
+                    if(node.IsInternal) throw new DuplicateModifierException(t);
+                    node.IsInternal = true;
                     break;
                 default:
                     isMod = false;
@@ -50,10 +50,10 @@ public class ModifiersAstNode {
     public override string ToString()
     {
         return "ModifiersAstNode{" +
-                "isPublic=" + isPublic +
-                ", isPrivate=" + isPrivate +
-                ", isProtected=" + isProtected +
-                ", isInternal=" + isInternal +
+                "isPublic=" + IsPublic +
+                ", isPrivate=" + IsPrivate +
+                ", isProtected=" + IsProtected +
+                ", isInternal=" + IsInternal +
                 "}";
     }
 

@@ -2,45 +2,31 @@ namespace Raccoonlang.Parsing.AST;
 
 public class InterfaceMemberAstNode
 {
-    public InterfaceMethodDeclarationAstNode? methodNode;
-    public bool isMethodDecl;
+    public IInterfaceMember? Member { get; set; }
 
-    public InterfaceFunctionDeclarationAstNode? functionNode;
-    public bool isFunctionDecl;
-
-    public InterfacePropertyDeclarationAstNode? propertyNode;
-    public bool isPropertyDecl;
-
-    public static InterfaceMemberAstNode? TryParse(Parser parser)
+    public static InterfaceMemberAstNode Parse(Parser parser)
     {
         InterfaceMemberAstNode node = new InterfaceMemberAstNode();
 
-        node.methodNode = InterfaceMethodDeclarationAstNode.TryParse(parser);
-        if (node.methodNode == null) {
-            node.isMethodDecl = true;
-        } else {
-            return node;
-        }
+        node.Member = InterfaceMethodDeclarationAstNode.TryParse(parser);
+        if (node.Member != null) return node;
 
-        node.functionNode = InterfaceFunctionDeclarationAstNode.TryParse(parser);
-        if (node.functionNode == null) {
-            node.isFunctionDecl = true;
-        } else {
-            return node;
-        }
+        node.Member = InterfaceFunctionDeclarationAstNode.TryParse(parser);
+        if (node.Member != null) return node;
 
-        node.propertyNode = InterfacePropertyDeclarationAstNode.TryParse(parser);
-        if (node.propertyNode == null) {
-            node.isPropertyDecl = true;
-        } else {
-            return node;
-        }
+        node.Member = InterfacePropertyDeclarationAstNode.TryParse(parser);
+        if (node.Member == null) return node;
 
-        return null;
+        throw new System.Exception("fucked up");
     }
 }
 
-public class InterfaceMethodDeclarationAstNode
+public interface IInterfaceMember
+{
+    
+}
+
+public class InterfaceMethodDeclarationAstNode : IInterfaceMember
 {
     public static InterfaceMethodDeclarationAstNode? TryParse(Parser parser)
     {
@@ -48,7 +34,7 @@ public class InterfaceMethodDeclarationAstNode
     }
 }
 
-public class InterfaceFunctionDeclarationAstNode
+public class InterfaceFunctionDeclarationAstNode : IInterfaceMember
 {
     public static InterfaceFunctionDeclarationAstNode? TryParse(Parser parser)
     {
@@ -56,7 +42,7 @@ public class InterfaceFunctionDeclarationAstNode
     }
 }
 
-public class InterfacePropertyDeclarationAstNode
+public class InterfacePropertyDeclarationAstNode : IInterfaceMember
 {
     public static InterfacePropertyDeclarationAstNode? TryParse(Parser parser)
     {

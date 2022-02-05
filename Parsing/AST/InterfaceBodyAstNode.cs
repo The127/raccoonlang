@@ -4,25 +4,18 @@ using Tokenizing;
 
 public class InterfaceBodyAstNode
 {
-    public List<InterfaceMemberAstNode> memberList = new List<InterfaceMemberAstNode>();
+    public List<InterfaceMemberAstNode> MemberList { get; set; } = new List<InterfaceMemberAstNode>();
 
     public static InterfaceBodyAstNode Parse(Parser parser)
     {
         InterfaceBodyAstNode node = new InterfaceBodyAstNode();
+        parser.Take(TokenType.OpenCurly);
 
-        parser.Take(TokenType.OPEN_CURLY);
-
-        while(true) {
-            InterfaceMemberAstNode? memberNode = InterfaceMemberAstNode.TryParse(parser);
-            if (memberNode != null) {
-                node.memberList.Add(memberNode);
-            } else {
-                break;
-            }
+        while(parser.Peek().Type != TokenType.CloseCurly) {
+            node.MemberList.Add(InterfaceMemberAstNode.Parse(parser));
         }
 
-        parser.Take(TokenType.CLOSE_CURLY);
-
+        parser.Take(TokenType.CloseCurly);
         return node;
     }
 }

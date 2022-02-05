@@ -2,40 +2,40 @@ namespace Raccoonlang.Tokenizing.TokenMatchers;
 
 public class AndEqualsTokenMatcher : TokenMatcher
 {
-    public AndEqualsTokenMatcher() : base("&=", TokenType.AND_EQUALS) {}
+    public AndEqualsTokenMatcher() : base("&=", TokenType.AndEquals) {}
 }
 
 public class DivisionEqualsTokenMatcher : TokenMatcher
 {
-    public DivisionEqualsTokenMatcher() : base("/=", TokenType.DIVISION_EQUALS) {}
+    public DivisionEqualsTokenMatcher() : base("/=", TokenType.DivisionEquals) {}
 }
 
 public class PlusEqualsTokenMatcher : TokenMatcher
 {
-    public PlusEqualsTokenMatcher() : base("+=", TokenType.PLUS_EQUALS) {}
+    public PlusEqualsTokenMatcher() : base("+=", TokenType.PlusEquals) {}
 }
 
 public class MinusEqualsTokenMatcher : TokenMatcher
 {
-    public MinusEqualsTokenMatcher() : base("-=", TokenType.MINUS_EQUALS) {}
+    public MinusEqualsTokenMatcher() : base("-=", TokenType.MinusEquals) {}
 }
 
 public class TimesEqualsTokenMatcher : TokenMatcher
 {
-    public TimesEqualsTokenMatcher() : base("*=", TokenType.TIMES_EQUALS) {}
+    public TimesEqualsTokenMatcher() : base("*=", TokenType.TimesEquals) {}
 }
 
 public class ModuloEqualsTokenMatcher : TokenMatcher
 {
-    public ModuloEqualsTokenMatcher() : base("%=", TokenType.MODULO_EQUALS) {}
+    public ModuloEqualsTokenMatcher() : base("%=", TokenType.ModuloEquals) {}
 }
 
 public class OrEqualsTokenMatcher : TokenMatcher
 {
-    public OrEqualsTokenMatcher() : base("|=", TokenType.OR_EQUALS) {}
+    public OrEqualsTokenMatcher() : base("|=", TokenType.OrEquals) {}
 }
 
 public class XorEqualsTokenMatcher : TokenMatcher
 {
-    public XorEqualsTokenMatcher() : base("^=", TokenType.XOR_EQUALS) {}
+    public XorEqualsTokenMatcher() : base("^=", TokenType.XorEquals) {}
 }
