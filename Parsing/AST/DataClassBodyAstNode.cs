@@ -10,6 +10,12 @@ public class DataClassBodyAstNode
     {
         DataClassBodyAstNode node = new DataClassBodyAstNode();
 
+        if (parser.Peek().Type == TokenType.SEMICOLON)
+        {
+            parser.Take();
+            return node;
+        }
+
         parser.Take(TokenType.OPEN_CURLY);
 
         while(true) {
