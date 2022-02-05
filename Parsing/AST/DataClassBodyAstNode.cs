@@ -24,4 +24,6 @@ public class DataClassBodyAstNode
 
         return node;
     }
+
+    public override string ToString() => $"DataClassBodyAstNode={{MemberList=[{string.Join(",", MemberList)}]}}";
 }

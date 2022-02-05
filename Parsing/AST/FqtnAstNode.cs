@@ -5,7 +5,7 @@ using Tokenizing;
 // fully qualified type name
 public class FqtnAstNode 
 {
-    public List<Token> Identifiers { get; set; } = new List<Token>();
+    public List<Token> Identifiers { get; set; } = new();
     public GenericTypesAstNode? GenericTypesAstNode { get; set; }
 
     public static FqtnAstNode Parse(Parser parser)
@@ -24,6 +24,6 @@ public class FqtnAstNode
     }
 
     public override string ToString() {
-        return "FqtnAstNode{identifiers=" + string.Join(",", Identifiers) + "}";
+        return "FqtnAstNode{identifiers=[" + string.Join(",", Identifiers) + $"], GenericTypesAstNode={GenericTypesAstNode}}}";
     }
 }

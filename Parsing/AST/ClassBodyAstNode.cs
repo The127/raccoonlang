@@ -17,6 +17,8 @@ public class ClassBodyAstNode
         
         return node;
     }
+
+    public override string ToString() => $"ClassBodyAstNode{{MemberList=[{string.Join(",", MemberList)}]}}";
 }
 
 public class ClassMemberAstNode

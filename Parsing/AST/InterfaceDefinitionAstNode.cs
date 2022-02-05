@@ -32,4 +32,7 @@ public class InterfaceDefinitionAstNode : ITypeDef
 
         return node;
     }
+
+    public override string ToString() =>
+        $"InterfaceDefinitionAstNode{{\nModifiers={Modifiers}, Name={Name}, GenericTypes={GenericTypes}, GenericConstraints={GenericConstraints}, BodyContainer={BodyContainer}}}";
 }

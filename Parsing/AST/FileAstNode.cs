@@ -22,9 +22,9 @@ public class FileAstNode
     public override string ToString()
     {
         return "FileAstNode{"+
-                "imports="+ (Imports == null ? "null" : string.Join(", ", Imports.ImportNodes)) +
-                ", nameSpace=" + (NameSpace == null ? "null" : (NameSpace.Node == null ? "''": string.Join(", ", NameSpace.Node.Identifiers))) +
-                ", typedefs=" + (Typedefs == null ? "null" : string.Join(", ", Typedefs.NodeList)) +
-                "}";
+                "imports="+ Imports +
+                ", nameSpace=[" + NameSpace +
+                "], typedefs=["+ string.Join(", ", Typedefs.NodeList) +
+                "]}";
     }
 }

@@ -18,4 +18,6 @@ public class InterfaceBodyAstNode
         parser.Take(TokenType.CloseCurly);
         return node;
     }
+
+    public override string ToString() => $"InterfaceBodyAstNode{{\nMemberList=[{string.Join(",", MemberList)}]}}";
 }

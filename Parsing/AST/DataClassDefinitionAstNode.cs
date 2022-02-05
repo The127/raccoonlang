@@ -40,7 +40,7 @@ public class DataClassDefinitionAstNode : ITypeDef
         return "DataClassDefinitionAstNode{" +
                 "modifiersAstNode=" + Modifiers +
                 ", name=" + Name +
-                ", genericTypesAstNode=" + (GenericTypes == null ? "" : GenericTypes.ToString()) +
+                ", genericTypesAstNode=" + GenericTypes +
                 ", functionParametersAstNode=" + Parameters +
                 ", genericTypeConstraintsAstNode=" + GenericConstraints+
                 ", dataClassBodyAstNode=" + BodyContainer +

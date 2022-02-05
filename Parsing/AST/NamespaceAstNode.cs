@@ -17,4 +17,6 @@ public class NamespaceAstNode
 
         return node;
     }
+
+    public override string ToString() => $"NamespaceAstNode={{\nNode={Node}}}";
 }

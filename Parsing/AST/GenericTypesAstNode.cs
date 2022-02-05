@@ -25,6 +25,6 @@ public class GenericTypesAstNode
 
     public override string ToString()
     {
-        return "GenericTypesAstNode{\nGenericTypeNames="+GenericTypeNames.ToArray().ToString()+"\n}";
+        return "GenericTypesAstNode{\nGenericTypeNames=["+string.Join(",", GenericTypeNames) + "]}";
     }
 }

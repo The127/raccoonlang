@@ -21,7 +21,7 @@ public class GenericTypeConstraintsAstNode
     public override string ToString()
     {
         return "GenericTypeConstraintsAstNode{" +
-               "genericTypeConstraintList=" + ConstraintList.ToArray() +
+               "genericTypeConstraintList=[" + string.Join(",", ConstraintList) + "]"+
                "}";
     }
 }
@@ -50,6 +50,8 @@ public class GenericTypeConstraintAstNode
 
         return node;
     }
+
+    public override string ToString() => $"GenericTypeConstraintAstNode{{Identifier={Identifier}, [{string.Join(",", ConstraintsList)}]}}";
 }
 
 public class GenericConstraintsAstNode
@@ -67,6 +69,8 @@ public class GenericConstraintsAstNode
 
         throw new System.Exception("UwU you fuwuked uwup.");
     }
+
+    public override string ToString() => $"GenericConstraintsAstNode{{GenericConstraint={GenericConstraint}}}";
 }
 
 public interface IGenericConstraintsAstNode
@@ -85,6 +89,8 @@ public class ExtendsConstraintAstNode : IGenericConstraintsAstNode
         node.Fqtn = FqtnAstNode.Parse(parser);
         return node;
     }
+
+    public override string ToString() => $"ExtendsConstraintAstNode{{Fqtn={Fqtn}}}";
 }
 
 public class NewConstraintAstNode : IGenericConstraintsAstNode
@@ -98,6 +104,8 @@ public class NewConstraintAstNode : IGenericConstraintsAstNode
         node.Parameters = NewConstraintParametersAstNode.Parse(parser);
         return node;
     }
+
+    public override string ToString() => $"NewConstraintAstNode{{Parameters={Parameters}}}";
 }
 
 public class NewConstraintParametersAstNode
@@ -119,4 +127,6 @@ public class NewConstraintParametersAstNode
         parser.Take(TokenType.CloseParen);
         return node;
     }
+
+    public override string ToString() => $"NewConstraintParametersAstNode{{Parameters=[{string.Join(",", Parameters)}]}}";
 }

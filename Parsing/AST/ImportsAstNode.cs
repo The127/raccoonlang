@@ -17,6 +17,8 @@ public class ImportsAstNode
             node.ImportNodes.Add(importAstNode);
         }
     }
+
+    public override string ToString() => $"ImportsAstNode{{\nImportNodes=[{String.Join(",", ImportNodes)}]}}";
 }
 
 public class ImportAstNode
@@ -35,4 +37,6 @@ public class ImportAstNode
 
         return node;
     }
+
+    public override string ToString() => $"ImportAstNode{{\nImportTypeName={ImportTypeName}}}";
 }

@@ -18,7 +18,7 @@ public class TypeDefinitionsAstNode
         return node;
     }
 
-    public override string ToString() => $"TypeDefinitionsAstNode{{{NodeList.ToArray()}}}";
+    public override string ToString() => $"TypeDefinitionsAstNode{{[{string.Join(",", NodeList)}]}}";
 }
 
 public class TypeDefAstNode
@@ -44,7 +44,7 @@ public class TypeDefAstNode
         return null;
     }
 
-    public override string ToString() => $"TypeDefAstNode{{{TypeDef}}}";
+    public override string ToString() => $"TypeDefAstNode{{\nTypeDef={TypeDef}}}";
 }
 
 public interface ITypeDef

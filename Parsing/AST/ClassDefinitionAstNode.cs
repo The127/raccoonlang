@@ -31,4 +31,6 @@ public class ClassDefinitionAstNode : ITypeDef
 
         return node;
     }
+
+    public override string ToString() => $"ClassDefinitionAstNode{{Modifiers={Modifiers}, Name={Name}, GenericTypes={GenericTypes}, GenericConstraints={GenericConstraints}, BodyContainer={BodyContainer}}}";
 }

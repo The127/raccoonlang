@@ -20,8 +20,8 @@ public class FunctionParameterAstNode
         if (ParamType != null && ParamName != null)
         {
             return "FunctionParameterAstNode{" +
-                   "paramType=" + ParamType.ToString() +
-                   ", paramName=" + ParamName.ToString() +
+                   "paramType=" + ParamType +
+                   ", paramName=" + ParamName +
                    "}";
         }
         else
@@ -58,7 +58,7 @@ public class FunctionParametersAstNode
     public override string ToString()
     {
         return "FunctionParametersAstNode{" +
-               "paramList=" + ParamList.ToArray().ToString() +
+               "paramList=" + ParamList.ToArray() +
                "}";
     }
 }

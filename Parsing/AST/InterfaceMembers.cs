@@ -19,6 +19,8 @@ public class InterfaceMemberAstNode
 
         throw new System.Exception("fucked up");
     }
+
+    public override string ToString() => $"InterfaceMemberAstNode{{\nMember={Member}}}";
 }
 
 public interface IInterfaceMember

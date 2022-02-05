@@ -36,4 +36,6 @@ public class FunctionDefinitionAstNode : ITypeDef
 
         return node;
     }
+
+    public override string ToString() => $"FunctionDefinitionAstNode={{Modifiers={Modifiers}, ReturnType={ReturnType}, Name={Name}, GenericTypes={GenericTypes}, Param={Param}, GenericConstraints={GenericConstraints}, BodyContainer={BodyContainer}}}";
 }
