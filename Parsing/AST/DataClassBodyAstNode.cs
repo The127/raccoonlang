@@ -12,7 +12,7 @@ public class DataClassBodyAstNode
 
         if (parser.Peek().Type == TokenType.SEMICOLON)
         {
-            parser.Take();
+            parser.Skip();
             return node;
         }
 
