@@ -37,8 +37,6 @@ public class TokenStream : ITokenStream
             return new Token(TokenType.Eof, eofLine, eofCol, "\n", this.FilePath);
         }
 
-        Console.WriteLine("take: {0}", this._tokenList[Position].ToString());
-
         return this._tokenList[Position++];
     }
 

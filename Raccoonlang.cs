@@ -1,4 +1,6 @@
-﻿namespace Raccoonlang;
+﻿using Raccoonlang.Utils;
+
+namespace Raccoonlang;
 
 using System;
 
@@ -10,8 +12,6 @@ class Raccoonlang
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("raccoonlang compiler...");
-
         Tokenizer tokenizer = new Tokenizer();
         ITokenStream stream = tokenizer.Tokenize("hardcoded_test.rcn",
         "namespace help.me;\n" +
@@ -22,8 +22,7 @@ class Raccoonlang
         "public fn void main() { //optionally string[] args or smth\n" + 
         "}");
 
-        Console.WriteLine("amount of tokens: {0}", stream.Size());
         FileAstNode ast = Parser.Parse((TokenStream) stream);
-        Console.WriteLine(ast);
+        Console.WriteLine(ast.AutoToString());
     }
 }

@@ -13,14 +13,14 @@ public class ArgumentsParser
 
         switch(args[1]) {
             case "compile": 
-                Console.WriteLine("Compile time!");
                 Tokenizer tokenizer = new Tokenizer();
                 if (args.Length == 3) {
                     try {
                         string path = args[2];
                         tokenizer.Tokenize(path, File.ReadAllText(path));
-                    } catch (Exception e) {
-                        Console.WriteLine(e.StackTrace);
+                    } catch (Exception e)
+                    {
+                        throw;
                     }
                 }
                 break;
