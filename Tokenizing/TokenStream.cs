@@ -17,6 +17,11 @@ public class TokenStream : ITokenStream
         this.tokenList = tokenList;
     }
 
+    public Token Current()
+    {
+        return this.tokenList[this.Position];
+    }
+
     public Token Take()
     {
         if (Position >= this.Size()) {

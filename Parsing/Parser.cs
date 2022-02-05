@@ -22,11 +22,6 @@ public class Parser
         this.tokenStream = stream;
     }
 
-    public Token Peek()
-    {
-        return Peek(0);
-    }
-
     public void Skip()
     {
         this.tokenStream.Skip();
@@ -35,6 +30,11 @@ public class Parser
     public void Skip(int skipAmount)
     {
         this.tokenStream.Skip(skipAmount);
+    }
+
+        public Token Peek()
+    {
+        return Peek(0);
     }
 
     public Token Peek(int peek) 
@@ -60,6 +60,11 @@ public class Parser
     public void RestoreState(ParserState state)
     {
         tokenStream.Seek(state.TokenIndex);
+    }
+
+    public void PrintCurrent()
+    {
+        Console.WriteLine(this.tokenStream.Current());
     }
 
     public static FileAstNode Parse(TokenStream stream)
