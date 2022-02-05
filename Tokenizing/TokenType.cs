@@ -64,18 +64,19 @@ public enum TokenType
     IDENTIFIER,
     VAR,
 
-    F64,
-    F32,
+    // temporarily removed
+    // F64,
+    // F32,
 
-    I8,
-    I16,
-    I32,
-    I64,
+    // I8,
+    // I16,
+    // I32,
+    // I64,
 
-    U8,
-    U16,
-    U32,
-    U64,
+    // U8,
+    // U16,
+    // U32,
+    // U64,
 
     BOOL,
     TRUE,

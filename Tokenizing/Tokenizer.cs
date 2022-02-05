@@ -64,18 +64,18 @@ public class Tokenizer
             new SemicolonTokenMatcher(),
             new ColonTokenMatcher(),
 
-            new I8TokenMatcher(),
-            new I16TokenMatcher(),
-            new I32TokenMatcher(),
-            new I64TokenMatcher(),
+            // new I8TokenMatcher(),
+            // new I16TokenMatcher(),
+            // new I32TokenMatcher(),
+            // new I64TokenMatcher(),
 
-            new U8TokenMatcher(),
-            new U16TokenMatcher(),
-            new U32TokenMatcher(),
-            new U64TokenMatcher(),
+            // new U8TokenMatcher(),
+            // new U16TokenMatcher(),
+            // new U32TokenMatcher(),
+            // new U64TokenMatcher(),
 
-            new F32TokenMatcher(),
-            new F64TokenMatcher(),
+            // new F32TokenMatcher(),
+            // new F64TokenMatcher(),
 
             new BoolTokenMatcher(),
             new TrueTokenMatcher(),
