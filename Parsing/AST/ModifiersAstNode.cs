@@ -40,7 +40,7 @@ public class ModifiersAstNode {
                     break;
             }
 
-            if(isMod) parser.Take();
+            if(isMod) parser.Skip();
         }
 
         return node;

@@ -15,7 +15,7 @@ public class FqtnAstNode
         node.Identifiers.Add(parser.Take(TokenType.IDENTIFIER));
 
         while(parser.Peek().Type == TokenType.DOT) {
-            parser.Take();
+            parser.Skip();
             node.Identifiers.Add(parser.Take(TokenType.IDENTIFIER));
         }
 

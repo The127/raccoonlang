@@ -11,6 +11,7 @@ public class FunctionParameterAstNode
     {
         FunctionParameterAstNode node = new FunctionParameterAstNode();
         node.paramType = FqtnAstNode.Parse(parser);
+        parser.Skip();
         node.paramName = parser.Take(TokenType.IDENTIFIER);
         return node;
     }
@@ -39,12 +40,13 @@ public class FunctionParametersAstNode
         parser.Take(TokenType.OPEN_PAREN);
 
         if (parser.Peek().Type != TokenType.CLOSE_PAREN) {
+
             node.paramList.Add(FunctionParameterAstNode.Parse(parser));
-            
-            while(parser.Peek().Type == TokenType.COMMA) {
-                parser.Take();
+
+            do {
+                parser.Skip(2);
                 node.paramList.Add(FunctionParameterAstNode.Parse(parser));
-            }
+            } while(parser.Peek(1).Type == TokenType.COMMA);
         }
 
         parser.Take(TokenType.CLOSE_PAREN);

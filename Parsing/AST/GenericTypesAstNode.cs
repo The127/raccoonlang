@@ -10,12 +10,12 @@ public class GenericTypesAstNode
     {
         if (parser.Peek().Type != TokenType.OP_LT) return null;
 
-        parser.Take();
+        parser.Skip();
 
         GenericTypesAstNode node = new GenericTypesAstNode();
 
         while (parser.Peek().Type == TokenType.COMMA) {
-            parser.Take();
+            parser.Skip();
             node.GenericTypeNames.Add(parser.Take(TokenType.IDENTIFIER));
         }
 

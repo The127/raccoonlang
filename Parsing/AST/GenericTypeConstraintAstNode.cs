@@ -11,7 +11,7 @@ public class GenericTypeConstraintAstNode
         Token t = parser.Peek();
         if (t.Type != TokenType.WHERE) return null;
 
-        parser.Take();
+        parser.Skip();
         parser.Take(TokenType.COLON);
 
         GenericTypeConstraintAstNode node = new GenericTypeConstraintAstNode();
@@ -20,7 +20,7 @@ public class GenericTypeConstraintAstNode
 
         while(true) {
             if (parser.Peek().Type != TokenType.COMMA) break;
-            parser.Take();
+            parser.Skip();
             node.constraintsList.Add(GenericTypeConstraintsAstNode.Parse(parser));
         }
 
