@@ -27,6 +27,16 @@ public class Parser
         return Peek(0);
     }
 
+    public void Skip()
+    {
+        this.tokenStream.Skip();
+    }
+
+    public void Skip(int skipAmount)
+    {
+        this.tokenStream.Skip(skipAmount);
+    }
+
     public Token Peek(int peek) 
     {
         return this.tokenStream.Peek(peek);

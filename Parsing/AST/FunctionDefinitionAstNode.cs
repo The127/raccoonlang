@@ -14,17 +14,14 @@ public class FunctionDefinitionAstNode
 
     public static FunctionDefinitionAstNode? TryParse(Parser parser)
     {
-        Parser.ParserState state = parser.ShelfState();
 
         FunctionDefinitionAstNode node = new FunctionDefinitionAstNode();
 
-        if (parser.Peek().Type != TokenType.FN) {
-            Console.WriteLine("Restored state in FunctionDefinition");
-            parser.RestoreState(state);
-            return null;
-        }
+        if (parser.Peek(1).Type != TokenType.FN) return null;
 
-        parser.Take();
+        node.modifiers = ModifiersAstNode.Parse(parser);
+
+        parser.Skip(); // skip the fn token
 
         node.returnType = FqtnAstNode.Parse(parser);
         node.name = parser.Take(TokenType.IDENTIFIER);

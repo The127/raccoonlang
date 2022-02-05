@@ -20,7 +20,7 @@ public class FqtnAstNode
         }
 
         node.Node = GenericTypesAstNode.TryParse(parser);
-        if (node.Node == null) Console.WriteLine("Could not find generic!");
+        if (node.Node == null) Console.WriteLine("Could not find a generic here! This might be right, or wrong, check source!");
         return node;
     }
 

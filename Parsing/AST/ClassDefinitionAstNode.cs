@@ -12,18 +12,16 @@ public class ClassDefinitionAstNode
 
     public static ClassDefinitionAstNode? TryParse(Parser parser)
     {
-        Parser.ParserState state = parser.ShelfState();
         
         ClassDefinitionAstNode node = new ClassDefinitionAstNode();
 
         node.modifiers = ModifiersAstNode.Parse(parser);
 
-        if (parser.Peek().Type != TokenType.CLASS) {
-            Console.WriteLine("Restored state in ClassDefinition");
-            parser.RestoreState(state);
-            return null;
-        }
-        parser.Take();
+        if (parser.Peek(1).Type != TokenType.CLASS) return null;
+
+        node.modifiers = ModifiersAstNode.Parse(parser);
+
+        parser.Skip(); // skip the class token 
 
         node.name = parser.Take(TokenType.IDENTIFIER);
         node.genericTypes = GenericTypesAstNode.TryParse(parser);

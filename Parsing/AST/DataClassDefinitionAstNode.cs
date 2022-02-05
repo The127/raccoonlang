@@ -13,20 +13,17 @@ public class DataClassDefinitionAstNode
 
     public static DataClassDefinitionAstNode? TryParse(Parser parser)
     {
-        Parser.ParserState state = parser.ShelfState();
-
         DataClassDefinitionAstNode node = new DataClassDefinitionAstNode();
+
+        if (parser.Peek(1).Type != TokenType.DATA) return null;
 
         node.modifiers = ModifiersAstNode.Parse(parser);
 
-        if (parser.Peek().Type != TokenType.DATA) {
-            Console.WriteLine("Restored state in DataClassDefinition");
-            parser.RestoreState(state);
-            return null;
-        }
+        parser.Skip(3); // skip the data token and whitespaces
 
-        parser.Take();
         parser.Take(TokenType.CLASS);
+
+        parser.Skip(); // skip whitespace
 
         node.name = parser.Take(TokenType.IDENTIFIER);
         node.genericTypes = GenericTypesAstNode.TryParse(parser);

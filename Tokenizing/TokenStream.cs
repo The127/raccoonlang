@@ -32,7 +32,6 @@ public class TokenStream : ITokenStream
             return new Token(TokenType.EOF, eofLine, eofCol, "\n", this.FilePath);
         }
 
-        Console.WriteLine("Pos before take: {0}", this.Position);
         Console.WriteLine("take: {0}", this.tokenList[Position].ToString());
 
         return this.tokenList[Position++];
@@ -53,14 +52,19 @@ public class TokenStream : ITokenStream
         return this.tokenList.Count();
     }
 
+    public void Skip()
+    {
+        this.Skip(1);
+    }
+
+    public void Skip(int skipAmount)
+    {   
+        this.Position += skipAmount;
+    }
+
     public Token Peek(int peekOffset)
     {
-        int pos = this.Position;
-        this.Position += peekOffset;
-
-        Token res = this.Take();
-        this.Position = pos;
-        return res;
+        return this.tokenList[Position+peekOffset];
     }
 
     public void Seek(int pos)

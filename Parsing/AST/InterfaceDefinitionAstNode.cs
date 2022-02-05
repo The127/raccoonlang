@@ -12,18 +12,13 @@ public class InterfaceDefinitionAstNode
 
     public static InterfaceDefinitionAstNode? TryParse(Parser parser)
     {
-        Parser.ParserState state = parser.ShelfState();
         InterfaceDefinitionAstNode node = new InterfaceDefinitionAstNode();
+
+        if (parser.Peek(1).Type != TokenType.INTERFACE) return null;
 
         node.modifiers = ModifiersAstNode.Parse(parser);
 
-        if (parser.Peek().Type != TokenType.INTERFACE) {
-            Console.WriteLine("Restored state in InterfaceDefinition");
-            parser.RestoreState(state);
-            return null;
-        }
-
-        parser.Take();
+        parser.Skip(3); // skip the interface token + whitespaces
 
         node.name = parser.Take(TokenType.IDENTIFIER);
         node.genericTypes = GenericTypesAstNode.TryParse(parser);
