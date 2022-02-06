@@ -1,5 +1,16 @@
 namespace Raccoonlang.Tokenizing.TokenMatchers;
 
+
+public class PlusPlusTokenMatcher : TokenMatcher
+{
+    public PlusPlusTokenMatcher() : base("++", TokenType.PlusPlus) {}
+}
+
+public class MinusMinusTokenMatcher : TokenMatcher
+{
+    public MinusMinusTokenMatcher() : base("--", TokenType.MinusMinus) {}
+}
+
 public class AndEqualsTokenMatcher : TokenMatcher
 {
     public AndEqualsTokenMatcher() : base("&=", TokenType.AndEquals) {}

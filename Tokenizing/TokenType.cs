@@ -13,6 +13,9 @@ public enum TokenType
     Comma,          // ,
     Semicolon,      // ;
     Colon,          // :
+    
+    PlusPlus,    // +=
+    MinusMinus,
 
     Equals,         // =
     PlusEquals,    // +=
@@ -81,6 +84,10 @@ public enum TokenType
     Break,
     Continue,
     Return,
+    
+    Cast,
+    This,
+    Base,
 
     // temporarily removed
     // F64,

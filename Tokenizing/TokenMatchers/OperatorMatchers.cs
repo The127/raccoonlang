@@ -64,5 +64,5 @@ public class OpPlusTokenMatcher : TokenMatcher
 
 public class OpTimesTokenMatcher : TokenMatcher
 {
-    public OpTimesTokenMatcher() : base("*", TokenType.OpPlus) {}
+    public OpTimesTokenMatcher() : base("*", TokenType.OpTimes) {}
 }

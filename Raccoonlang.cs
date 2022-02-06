@@ -23,7 +23,7 @@ class Raccoonlang
         "\n" +
         "private class Person implements IPerson{" +
         "   u8 Age {get}" +
-        "   string GetFulName() => /* TODO statements */" +
+        "   string GetFulName() => \"John Doe\";" +
         "   fn string StaticFunction(){" +
         "       /* TODO statements */" +
         "   }" +
@@ -32,7 +32,7 @@ class Raccoonlang
         "public data class Point2d(f64 X, f64 Y);\n" +
         "\n" +
         "public data class Complex(f64 X, f64 Y){" +
-        "   u16 Something => /*Needs expressions*/;" +
+        "   u16 Something => 42;" +
         "}\n" +
         "\n" +
         "/* multiline comment\n" +
@@ -41,6 +41,6 @@ class Raccoonlang
         "}");
 
         FileAstNode ast = Parser.Parse((TokenStream) stream);
-        Console.WriteLine(ast.AutoToString());
+        Console.WriteLine(ast.AutoToString(prettyPrint:false));
     }
 }

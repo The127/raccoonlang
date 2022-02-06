@@ -33,6 +33,9 @@ public class Tokenizer
             new AndEqualsTokenMatcher(),
             new OrEqualsTokenMatcher(),
             new XorEqualsTokenMatcher(),
+            
+            new PlusPlusTokenMatcher(),
+            new MinusMinusTokenMatcher(),
 
             new OpBinOrTokenMatcher(),
             new OpBinAndTokenMatcher(),
@@ -106,6 +109,10 @@ public class Tokenizer
             new BreakTokenMatcher(),
             new ContinueTokenMatcher(),
             new ReturnTokenMatcher(),
+            
+            new ThisTokenMatcher(),
+            new BaseTokenMatcher(),
+            new CastTokenMatcher(),
             
             new WhereTokenMatcher(),
             new NewTokenMatcher(),

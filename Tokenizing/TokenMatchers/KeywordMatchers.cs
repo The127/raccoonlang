@@ -142,6 +142,22 @@ public class ReturnTokenMatcher : TokenMatcher
     public ReturnTokenMatcher() : base("return", TokenType.Return) {}
 }
 
+public class ThisTokenMatcher : TokenMatcher
+{
+    public ThisTokenMatcher() : base("this", TokenType.This) {}
+}
+
+public class CastTokenMatcher : TokenMatcher
+{
+    public CastTokenMatcher() : base("cast", TokenType.Cast) {}
+}
+
+public class BaseTokenMatcher : TokenMatcher
+{
+    public BaseTokenMatcher() : base("base", TokenType.Base) {}
+}
+
+
 public class ConstTokenMatcher : TokenMatcher
 {
     public ConstTokenMatcher() : base("const", TokenType.Const) {}
