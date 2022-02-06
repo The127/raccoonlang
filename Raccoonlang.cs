@@ -15,6 +15,12 @@ class Raccoonlang
         Tokenizer tokenizer = new Tokenizer();
         ITokenStream stream = tokenizer.Tokenize("hardcoded_test.rcn",
         "namespace help.me;\n" +
+        "public interface IPerson{" +
+        "   u8 Age {get;}" +
+        "   string GetFullName();" +
+        "   fn string StaticFunction();" +
+        "}" +
+        "" +
         "public data class Point2d(f64 X, f64 Y);\n" +
         "\n" +
         "/* multiline comment\n" +

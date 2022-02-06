@@ -8,6 +8,12 @@ public class FqtnAstNode
     public List<Token> Identifiers { get; set; } = new();
     public GenericTypesAstNode? GenericTypesAstNode { get; set; }
 
+    public static FqtnAstNode? TryParse(Parser parser)
+    {
+        if (parser.Peek().Type != TokenType.Identifier) return null;
+        return Parse(parser);
+    }
+    
     public static FqtnAstNode Parse(Parser parser)
     {
         FqtnAstNode node = new FqtnAstNode();

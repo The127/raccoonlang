@@ -57,6 +57,9 @@ public enum TokenType
     Internal,
     Override, //TODO
 
+    Get,
+    Set,
+    
     Data,
     Class,
     Interface,
@@ -78,11 +81,11 @@ public enum TokenType
     // U32,
     // U64,
 
-    Bool,
+    // Bool,
     True,
     False,
 
-    String,
+    // String,
     StringLiteral, // "
 
     NumberLiteral,

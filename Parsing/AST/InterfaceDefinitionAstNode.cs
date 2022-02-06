@@ -4,11 +4,11 @@ using Tokenizing;
 
 public class InterfaceDefinitionAstNode : ITypeDef
 {
-    private ModifiersAstNode? Modifiers { get; set; }
-    private Token? Name { get; set; }
-    private GenericTypesAstNode? GenericTypes { get; set; }
-    private GenericTypeConstraintsAstNode? GenericConstraints { get; set; }
-    private InterfaceBodyAstNode? BodyContainer { get; set; }
+    public ModifiersAstNode? Modifiers { get; set; }
+    public Token? Name { get; set; }
+    public GenericTypesAstNode? GenericTypes { get; set; }
+    public GenericTypeConstraintsAstNode? GenericConstraints { get; set; }
+    public InterfaceBodyAstNode? BodyContainer { get; set; }
 
     public static InterfaceDefinitionAstNode? TryParse(Parser parser)
     {

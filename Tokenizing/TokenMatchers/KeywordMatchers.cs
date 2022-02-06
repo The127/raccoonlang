@@ -1,9 +1,9 @@
 namespace Raccoonlang.Tokenizing.TokenMatchers;
 
-public class BoolTokenMatcher : TokenMatcher
-{
-    public BoolTokenMatcher() : base("bool", TokenType.Bool) {}
-}
+// public class BoolTokenMatcher : TokenMatcher
+// {
+//     public BoolTokenMatcher() : base("bool", TokenType.Bool) {}
+// }
 
 public class ClassTokenMatcher : TokenMatcher
 {
@@ -65,10 +65,10 @@ public class PublicTokenMatcher : TokenMatcher
     public PublicTokenMatcher() : base("public", TokenType.Public) {}
 }
 
-public class StringTokenMatcher : TokenMatcher
-{
-    public StringTokenMatcher() : base("string", TokenType.String) {}
-}
+// public class StringTokenMatcher : TokenMatcher
+// {
+//     public StringTokenMatcher() : base("string", TokenType.String) {}
+// }
 
 public class TrueTokenMatcher : TokenMatcher
 {
@@ -83,6 +83,16 @@ public class VarTokenMatcher : TokenMatcher
 public class WhereTokenMatcher : TokenMatcher
 {
     public WhereTokenMatcher() : base("where", TokenType.Where) {}
+}
+
+public class GetTokenMatcher : TokenMatcher
+{
+    public GetTokenMatcher() : base("get", TokenType.Get) {}
+}
+
+public class SetTokenMatcher : TokenMatcher
+{
+    public SetTokenMatcher() : base("set", TokenType.Set) {}
 }
 
 public class LambdaArrowTokenMatcher : TokenMatcher

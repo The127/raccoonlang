@@ -77,11 +77,11 @@ public class Tokenizer
             // new F32TokenMatcher(),
             // new F64TokenMatcher(),
 
-            new BoolTokenMatcher(),
+            // new BoolTokenMatcher(),
             new TrueTokenMatcher(),
             new FalseTokenMatcher(),
 
-            new StringTokenMatcher(),
+            // new StringTokenMatcher(),
 
             new PublicTokenMatcher(),
             new PrivateTokenMatcher(),
@@ -96,6 +96,9 @@ public class Tokenizer
 
             new WhereTokenMatcher(),
             new NewTokenMatcher(),
+            
+            new GetTokenMatcher(),
+            new SetTokenMatcher(),
 
             new NamespaceTokenMatcher(),
             new ImportTokenMatcher(),

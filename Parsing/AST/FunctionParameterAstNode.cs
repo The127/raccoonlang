@@ -35,6 +35,12 @@ public class FunctionParametersAstNode
 {
     public List<FunctionParameterAstNode> ParamList { get; set; } = new List<FunctionParameterAstNode>();
 
+    public static FunctionParametersAstNode? TryParse(Parser parser)
+    {
+        if (parser.Peek().Type != TokenType.OpenParen) return null;
+        return Parse(parser);
+    }
+    
     public static FunctionParametersAstNode Parse(Parser parser)
     {
         FunctionParametersAstNode node = new FunctionParametersAstNode();
