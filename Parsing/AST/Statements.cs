@@ -7,6 +7,12 @@ public class StatementAstNode
 {
     public static IStatement Parse(Parser parser)
     {
+        var node = TryParse(parser);
+        if (node == null) throw new System.Exception("we done fucked up");
+        return node;
+    }
+    public static IStatement? TryParse(Parser parser)
+    {
         IStatement? statement = LoopStatementAstNode.TryParse(parser);
         if (statement != null) return statement;
 
@@ -34,7 +40,7 @@ public class StatementAstNode
         statement = ExpressionStatementAstNode.TryParse(parser);
         if (statement != null) return statement;
 
-        throw new System.Exception("we done fucked up");
+        return null;
     }
 }
 

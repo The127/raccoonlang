@@ -213,3 +213,53 @@ public class NumberLiteral : ILiteral
         };
     }
 }
+
+public class ExpressionListAstNode : IExpression
+{
+    public List<ExpressionAstNode> Expressions { get; set; } = new();
+    
+    public static ExpressionListAstNode Parse(Parser parser)
+    {
+        var node = TryParse(parser);
+        if (node == null) throw new System.Exception("um, no!");
+        return node;
+    }
+
+    public static ExpressionListAstNode? TryParse(Parser parser)
+    {
+        ExpressionListAstNode node = new();
+        var parserState = parser.ShelfState();
+
+        if (parser.Peek().Type != TokenType.OpenParen) return null;
+        parser.Take(TokenType.OpenParen);
+
+        var expression = ExpressionAstNode.TryParse(parser);
+        if (expression == null)
+        {
+            parser.RestoreState(parserState);
+            return null;
+        }
+        node.Expressions.Add(expression);
+
+        while (parser.Peek().Type == TokenType.Comma)
+        {
+            parser.Take(TokenType.Comma);
+            expression = ExpressionAstNode.TryParse(parser);
+            if (expression == null)
+            {
+                parser.RestoreState(parserState);
+                return null;
+            }
+            node.Expressions.Add(expression);
+        }
+
+        if (parser.Peek().Type != TokenType.CloseParen)
+        {
+            parser.RestoreState(parserState);
+            return null;
+        }
+        parser.Take(TokenType.CloseParen);
+        
+        return null;
+    }
+}

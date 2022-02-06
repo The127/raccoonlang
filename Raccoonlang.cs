@@ -20,8 +20,15 @@ class Raccoonlang
         "   string GetFullName();" +
         "   fn string StaticFunction();" +
         "}" +
+        "" +
+        "private class PersonBase{" +
+        "   public new(u8 age){" +
+        "       //do nothing\n" +
+        "   }" +
+        "}" +
         "\n" +
-        "private class Person implements IPerson{" +
+        "private class Person extends PersonBase implements IPerson{" +
+        "   public new() : base(16);" +
         "   u8 Age {get}" +
         "   string GetFulName() => \"John Doe\";" +
         "   fn string StaticFunction(){" +
