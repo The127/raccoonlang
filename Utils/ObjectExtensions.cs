@@ -5,12 +5,12 @@ namespace Raccoonlang.Utils;
 
 public static class ObjectExtensions
 {
-    public static string AutoToString(this object? o, bool b = true)
+    public static string AutoToString(this object? o, bool prettyPrint = true, bool encapsulate = true)
     {
         if (o == null) return "";
         var sb = new StringBuilder();
 
-        if (b) sb.Append('{');
+        if (encapsulate) sb.Append('{');
 
         var properties = o.GetType().GetProperties();
         for (var index = 0; index < properties.Length; index++)
@@ -21,13 +21,20 @@ public static class ObjectExtensions
             if (propertyInfo.PropertyType.IsPrimitive())
             {
                 if (propertyInfo.PropertyType.IsAssignableTo(typeof(string))) sb.Append('"');
-                sb.Append(propertyValue?.ToString() ?? "null");
+                if (propertyInfo.PropertyType.IsAssignableTo(typeof(bool)))
+                {
+                    sb.Append((propertyValue?.ToString() ?? "null").ToLower());
+                }
+                else
+                {
+                    sb.Append(propertyValue?.ToString() ?? "null");
+                }
                 if (propertyInfo.PropertyType.IsAssignableTo(typeof(string))) sb.Append('"');
             }
             else if (propertyInfo.PropertyType.IsEnumerable())
             {
                 var enumerable = (propertyValue as IEnumerable)!.Cast<object>();
-                sb.Append('[').Append(string.Join(", ", enumerable.Select(x => x.AutoToString()))).Append(']');
+                sb.Append('[').Append(string.Join(", ", enumerable.Select(x => x.AutoToString(false)))).Append(']');
             }
             else if (propertyInfo.PropertyType.IsEnum)
             {
@@ -36,7 +43,7 @@ public static class ObjectExtensions
             else
             {
                 sb.Append('{');
-                sb.Append(propertyValue.AutoToString(false));
+                sb.Append(propertyValue.AutoToString(false, false));
                 sb.Append('}');
             }
 
@@ -44,8 +51,14 @@ public static class ObjectExtensions
         }
 
 
-        if (b) sb.Append('}');
-        return sb.ToString();
+        if (encapsulate) sb.Append('}');
+        var result = sb.ToString();
+        if (prettyPrint)
+        {
+            var temp = Newtonsoft.Json.JsonConvert.DeserializeObject(result); 
+            result = Newtonsoft.Json.JsonConvert.SerializeObject(temp, Newtonsoft.Json.Formatting.Indented);
+        }
+        return result;
     }
 
     public static bool IsEnumerable(this Type type)
