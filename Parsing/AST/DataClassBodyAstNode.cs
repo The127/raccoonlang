@@ -4,7 +4,7 @@ using Tokenizing;
 
 public class DataClassBodyAstNode
 {
-    public List<DataClassMemberAstNode> MemberList { get; set; } = new();
+    public List<IDataClassMember> MemberList { get; set; } = new();
 
     public static DataClassBodyAstNode Parse(Parser parser)
     {
@@ -12,15 +12,18 @@ public class DataClassBodyAstNode
 
         if (parser.Peek().Type == TokenType.Semicolon)
         {
-            parser.Skip();
+            parser.Take(TokenType.Semicolon);
             return node;
         }
 
         parser.Take(TokenType.OpenCurly);
-        while (parser.Peek().Type != TokenType.CloseCurly)
+        while (true)
         {
-            node.MemberList.Add(DataClassMemberAstNode.Parse(parser));
+            var member = DataClassMemberAstNode.TryParse(parser);
+            if (member == null) break;
+            node.MemberList.Add(member);
         }
+        parser.Take(TokenType.CloseCurly);
 
         return node;
     }

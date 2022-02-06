@@ -20,7 +20,7 @@ class Raccoonlang
         "   string GetFullName();" +
         "   fn string StaticFunction();" +
         "}" +
-        "" +
+        "\n" +
         "private class Person implements IPerson{" +
         "   u8 Age {get}" +
         "   string GetFulName() => /* TODO statements */" +
@@ -28,8 +28,12 @@ class Raccoonlang
         "       /* TODO statements */" +
         "   }" +
         "}" +
-        "" +
+        "\n" +
         "public data class Point2d(f64 X, f64 Y);\n" +
+        "\n" +
+        "public data class Complex(f64 X, f64 Y){" +
+        "   u16 Something => /*Needs expressions*/;" +
+        "}\n" +
         "\n" +
         "/* multiline comment\n" +
         "testing */\n" +       
