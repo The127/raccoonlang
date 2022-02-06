@@ -29,6 +29,8 @@ public class GenericTypeConstraintsAstNode
 public class GenericTypeConstraintAstNode
 {
     public Token Identifier { get; set; }
+    public bool Extends { get; set; }
+    public bool Implements { get; set; }
     public List<GenericConstraintsAstNode> ConstraintsList { get; set; } = new();
 
     public static GenericTypeConstraintAstNode? TryParse(Parser parser)
@@ -38,14 +40,27 @@ public class GenericTypeConstraintAstNode
         if (parser.Peek().Type != TokenType.Where) return null;
         parser.Take(TokenType.Where);
         node.Identifier = parser.Take(TokenType.Identifier);
-        parser.Take(TokenType.Colon);
+
+        if (parser.Peek().Type == TokenType.Implements)
+        {
+            node.Implements = true;
+            parser.Take(TokenType.Implements);
+        }
+        else
+        {
+            node.Extends = true;
+            parser.Take(TokenType.Extends);
+        }
 
         node.ConstraintsList.Add(GenericConstraintsAstNode.Parse(parser));
 
-        while (parser.Peek().Type == TokenType.Comma)
+        if (node.Implements)
         {
-            parser.Take(TokenType.Comma);
-            node.ConstraintsList.Add(GenericConstraintsAstNode.Parse(parser));
+            while (parser.Peek().Type == TokenType.Comma)
+            {
+                parser.Take(TokenType.Comma);
+                node.ConstraintsList.Add(GenericConstraintsAstNode.Parse(parser));
+            }
         }
 
         return node;

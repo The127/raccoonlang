@@ -4,13 +4,26 @@ using Tokenizing;
 
 public class FunctionBodyAstNode
 {
+    public List<StatementAstNode> Statements { get; set; } = new();
+    
     public static FunctionBodyAstNode Parse(Parser parser)
     {
         FunctionBodyAstNode node = new FunctionBodyAstNode();
 
-        parser.Take(TokenType.OpenCurly);
-        // TODO: actually get body
-        parser.Take(TokenType.CloseCurly);
+        if (parser.Peek().Type == TokenType.OpenCurly)
+        {
+            parser.Take(TokenType.OpenCurly);
+            while (parser.Peek().Type != TokenType.CloseCurly)
+            {
+                node.Statements.Add(StatementAstNode.Parse(parser));
+            }
+            parser.Take(TokenType.CloseCurly);
+        }
+        else
+        {
+            parser.Take(TokenType.LambdaArrow);
+            node.Statements.Add(StatementAstNode.Parse(parser));
+        }
 
         return node;
     }

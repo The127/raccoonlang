@@ -16,9 +16,17 @@ class Raccoonlang
         ITokenStream stream = tokenizer.Tokenize("hardcoded_test.rcn",
         "namespace help.me;\n" +
         "public interface IPerson{" +
-        "   u8 Age {get;}" +
+        "   u8 Age {get}" +
         "   string GetFullName();" +
         "   fn string StaticFunction();" +
+        "}" +
+        "" +
+        "private class Person implements IPerson{" +
+        "   u8 Age {get}" +
+        "   string GetFulName() => /* TODO statements */" +
+        "   fn string StaticFunction(){" +
+        "       /* TODO statements */" +
+        "   }" +
         "}" +
         "" +
         "public data class Point2d(f64 X, f64 Y);\n" +

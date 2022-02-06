@@ -4,7 +4,7 @@ using Tokenizing;
 
 public class DataClassBodyAstNode
 {
-    public List<DataClassMemberAstNode> MemberList { get; set; } = new List<DataClassMemberAstNode>();
+    public List<DataClassMemberAstNode> MemberList { get; set; } = new();
 
     public static DataClassBodyAstNode Parse(Parser parser)
     {

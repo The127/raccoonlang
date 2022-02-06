@@ -22,10 +22,10 @@ public class IdentifierTokenMatcher : RegexableTokenMatcher
 
 public class MultiLineCommentTokenMatcher : RegexableTokenMatcher
 {
-    public MultiLineCommentTokenMatcher() : base(@"/\*.*\*/", TokenType.MultiLineComment) {}
+    public MultiLineCommentTokenMatcher() : base(@"/\*.*\*/", TokenType.MultiLineComment, true) {}
 }
 
 public class CommentTokenMatcher : RegexableTokenMatcher
 {
-    public CommentTokenMatcher() : base(@"(//.*)\n", TokenType.Comment) {}
+    public CommentTokenMatcher() : base(@"(//.*)\n", TokenType.Comment, true) {}
 }

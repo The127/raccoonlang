@@ -133,14 +133,12 @@ public class InterfacePropertyDeclarationAstNode : IInterfaceMember
         {
             node.HasGet = true;
             parser.Take(TokenType.Get);
-            parser.Take(TokenType.Semicolon);
         }
 
         if (parser.Peek().Type == TokenType.Set)
         {
             node.HasSet = true;
             parser.Take(TokenType.Set);
-            parser.Take(TokenType.Semicolon);
         }
 
         if (!node.HasGet && !node.HasSet)

@@ -60,12 +60,16 @@ public enum TokenType
     Get,
     Set,
     
+    Extends,
+    Implements,
+    
     Data,
     Class,
     Interface,
     Fn,
     Identifier,
     Var,
+    Const,
 
     // temporarily removed
     // F64,

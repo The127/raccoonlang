@@ -35,6 +35,16 @@ public class InterfaceTokenMatcher : TokenMatcher
     public InterfaceTokenMatcher() : base("interface", TokenType.Interface) {}
 }
 
+public class ExtendsTokenMatcher : TokenMatcher
+{
+    public ExtendsTokenMatcher() : base("extends", TokenType.Extends) {}
+}
+
+public class ImplementsTokenMatcher : TokenMatcher
+{
+    public ImplementsTokenMatcher() : base("implements", TokenType.Implements) {}
+}
+
 public class InternalTokenMatcher : TokenMatcher
 {
     public InternalTokenMatcher() : base("internal", TokenType.Internal) {}
@@ -78,6 +88,11 @@ public class TrueTokenMatcher : TokenMatcher
 public class VarTokenMatcher : TokenMatcher
 {
     public VarTokenMatcher() : base("var", TokenType.Var) {}
+}
+
+public class ConstTokenMatcher : TokenMatcher
+{
+    public ConstTokenMatcher() : base("const", TokenType.Const) {}
 }
 
 public class WhereTokenMatcher : TokenMatcher

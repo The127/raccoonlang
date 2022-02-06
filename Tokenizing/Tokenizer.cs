@@ -87,7 +87,11 @@ public class Tokenizer
             new PrivateTokenMatcher(),
             new ProtectedTokenMatcher(),
             new InternalTokenMatcher(),
+            
+            new ExtendsTokenMatcher(),
+            new ImplementsTokenMatcher(),
 
+            new ConstTokenMatcher(),
             new VarTokenMatcher(),
             new DataTokenMatcher(),
             new ClassTokenMatcher(),
