@@ -35,6 +35,20 @@ public class ExpressionAstNode
         expression = ConstantExpressionAstNode.TryParse(parser);
         if (expression != null) return new ExpressionAstNode(expression);
         
+        expression = CtorCallExpressionAstNode.TryParse(parser);
+        if (expression != null) return new ExpressionAstNode(expression);
+        
+        
+        expression = IdentifierExpressionAstNode.TryParse(parser);
+        if (expression != null) return new ExpressionAstNode(expression);
+        
+        
+        expression = CallExpressionAstNode.TryParse(parser);
+        if (expression != null) return new ExpressionAstNode(expression);
+        
+        expression = PostExpressionAstNode.TryParse(parser);
+        if (expression != null) return new ExpressionAstNode(expression);
+        
         return null;
     }
 }
@@ -42,6 +56,112 @@ public class ExpressionAstNode
 public interface IExpression
 {
     
+}
+
+public class PostExpressionAstNode : IExpression
+{
+    public ExpressionAstNode Expression { get; set; }
+    public Token Operation { get; set; }
+
+    public static PostExpressionAstNode? TryParse(Parser parser)
+    {
+        var parserState = parser.ShelfState();
+        PostExpressionAstNode node = new();
+
+        var expression = ExpressionAstNode.TryParse(parser);
+        if (expression == null)
+        {
+            parser.RestoreState(parserState);
+            return null;
+        }
+        node.Expression = expression;
+
+        if (parser.Peek().Type != TokenType.PlusPlus && parser.Peek().Type != TokenType.MinusMinus)
+        {
+            parser.RestoreState(parserState);
+            return null;
+        }
+        node.Operation = parser.Take();
+        
+        return node;
+    }
+}
+
+public class CallExpressionAstNode : IExpression
+{
+    public ExpressionAstNode Expression { get; set; }
+    public ExpressionListAstNode? Parameters { get; set; }
+
+    public static CallExpressionAstNode? TryParse(Parser parser)
+    {
+        var parserState = parser.ShelfState();
+        CallExpressionAstNode node = new();
+
+        var expression = ExpressionAstNode.TryParse(parser);
+        if (expression == null)
+        {
+            parser.RestoreState(parserState);
+            return null;
+        }
+        node.Expression = expression;
+
+        if (parser.Peek().Type != TokenType.OpenParen)
+        {
+            parser.RestoreState(parserState);
+            return null;
+        }
+        parser.Take(TokenType.OpenParen);
+
+        node.Parameters = ExpressionListAstNode.TryParse(parser);
+        
+        if (parser.Peek().Type != TokenType.CloseParen)
+        {
+            parser.RestoreState(parserState);
+            return null;
+        }
+        parser.Take(TokenType.CloseParen);
+        
+        return node;
+    }
+}
+
+public class IdentifierExpressionAstNode : IExpression
+{
+    public Token Identifier { get; set; }
+
+    public static IdentifierExpressionAstNode? TryParse(Parser parser)
+    {
+        if (parser.Peek().Type != TokenType.Identifier) return null;
+        return new IdentifierExpressionAstNode()
+        {
+            Identifier = parser.Take(TokenType.Identifier),
+        };
+    }
+}
+
+public class CtorCallExpressionAstNode : IExpression
+{
+    public FqtnAstNode? FqtnAstNode { get; set; }
+    public ExpressionListAstNode Parameters { get; set; }
+    
+    public static CtorCallExpressionAstNode? TryParse(Parser parser)
+    {
+        var parserState = parser.ShelfState();
+        CtorCallExpressionAstNode node = new();
+
+        node.FqtnAstNode = FqtnAstNode.TryParse(parser);
+
+        if (parser.Peek().Type != TokenType.New)
+        {
+            parser.RestoreState(parserState);
+            return null;
+        }
+        parser.Take(TokenType.New);
+        
+        node.Parameters = ExpressionListAstNode.Parse(parser);
+
+        return node;
+    }
 }
 
 public class PreExpressionAstNode : IExpression
