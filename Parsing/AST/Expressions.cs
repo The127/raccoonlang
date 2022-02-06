@@ -42,12 +42,12 @@ public class ExpressionAstNode
         expression = IdentifierExpressionAstNode.TryParse(parser);
         if (expression != null) return new ExpressionAstNode(expression);
         
-        
-        expression = CallExpressionAstNode.TryParse(parser);
-        if (expression != null) return new ExpressionAstNode(expression);
-        
-        expression = PostExpressionAstNode.TryParse(parser);
-        if (expression != null) return new ExpressionAstNode(expression);
+        //
+        // expression = CallExpressionAstNode.TryParse(parser);
+        // if (expression != null) return new ExpressionAstNode(expression);
+        //
+        // expression = PostExpressionAstNode.TryParse(parser);
+        // if (expression != null) return new ExpressionAstNode(expression);
         
         return null;
     }
