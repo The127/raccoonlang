@@ -4,7 +4,7 @@ using Tokenizing;
 
 public class FunctionBodyAstNode
 {
-    public List<StatementAstNode> Statements { get; set; } = new();
+    public List<IStatement> Statements { get; set; } = new();
     
     public static FunctionBodyAstNode Parse(Parser parser)
     {

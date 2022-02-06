@@ -70,6 +70,17 @@ public enum TokenType
     Identifier,
     Var,
     Const,
+    
+    Loop,
+    If,
+    Elif,
+    Else,
+    Switch,
+    Case,
+    Default,
+    Break,
+    Continue,
+    Return,
 
     // temporarily removed
     // F64,

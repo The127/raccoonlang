@@ -125,7 +125,7 @@ public class AutoGetter : IGetter
 
 public class FullGetterAstNode : IGetter
 {
-    public List<StatementAstNode> Statements { get; set; }
+    public List<IStatement> Statements { get; set; }
     
     public static FullGetterAstNode? TryParse(Parser parser)
     {
@@ -186,7 +186,7 @@ public class AutoSetter : ISetter
 
 public class FullSetterAstNode : ISetter
 {
-    public List<StatementAstNode> Statements { get; set; }
+    public List<IStatement> Statements { get; set; }
     
     public static FullSetterAstNode? TryParse(Parser parser)
     {

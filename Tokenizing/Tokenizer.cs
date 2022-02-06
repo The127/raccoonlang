@@ -97,7 +97,16 @@ public class Tokenizer
             new ClassTokenMatcher(),
             new InterfaceTokenMatcher(),
             new FnTokenMatcher(),
-
+            
+            new LoopTokenMatcher(),
+            new IfTokenMatcher(),
+            new ElifTokenMatcher(), 
+            new ElseTokenMatcher(),
+            new SwitchTokenMatcher(),
+            new BreakTokenMatcher(),
+            new ContinueTokenMatcher(),
+            new ReturnTokenMatcher(),
+            
             new WhereTokenMatcher(),
             new NewTokenMatcher(),
             

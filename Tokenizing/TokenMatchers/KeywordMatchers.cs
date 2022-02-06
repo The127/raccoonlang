@@ -90,6 +90,58 @@ public class VarTokenMatcher : TokenMatcher
     public VarTokenMatcher() : base("var", TokenType.Var) {}
 }
 
+public class LoopTokenMatcher : TokenMatcher
+{
+    public LoopTokenMatcher() : base("loop", TokenType.Loop) {}
+}
+
+public class IfTokenMatcher : TokenMatcher
+{
+    public IfTokenMatcher() : base("if", TokenType.If) {}
+}
+
+public class ElifTokenMatcher : TokenMatcher
+{
+    public ElifTokenMatcher() : base("elif", TokenType.Elif) {}
+}
+
+public class ElseTokenMatcher : TokenMatcher
+{
+    public ElseTokenMatcher() : base("else", TokenType.Else) {}
+}
+
+public class SwitchTokenMatcher : TokenMatcher
+{
+    public SwitchTokenMatcher() : base("switch", TokenType.Switch) {}
+}
+
+
+public class CaseTokenMatcher : TokenMatcher
+{
+    public CaseTokenMatcher() : base("case", TokenType.Case) {}
+}
+
+
+public class DefaultTokenMatcher : TokenMatcher
+{
+    public DefaultTokenMatcher() : base("default", TokenType.Default) {}
+}
+
+public class BreakTokenMatcher : TokenMatcher
+{
+    public BreakTokenMatcher() : base("break", TokenType.Break) {}
+}
+
+public class ContinueTokenMatcher : TokenMatcher
+{
+    public ContinueTokenMatcher() : base("continue", TokenType.Continue) {}
+}
+
+public class ReturnTokenMatcher : TokenMatcher
+{
+    public ReturnTokenMatcher() : base("return", TokenType.Return) {}
+}
+
 public class ConstTokenMatcher : TokenMatcher
 {
     public ConstTokenMatcher() : base("const", TokenType.Const) {}
