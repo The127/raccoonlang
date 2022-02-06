@@ -11,6 +11,7 @@ public class StatementAstNode
         if (node == null) throw new System.Exception("we done fucked up");
         return node;
     }
+
     public static IStatement? TryParse(Parser parser)
     {
         IStatement? statement = LoopStatementAstNode.TryParse(parser);
@@ -100,6 +101,7 @@ public class ElifStatementAstNode : IStatement
 {
     public ExpressionAstNode Condition { get; set; }
     public FunctionBodyAstNode Body { get; set; }
+
     public static ElifStatementAstNode? TryParse(Parser parser)
     {
         if (parser.Peek().Type != TokenType.Elif) return null;
@@ -114,6 +116,7 @@ public class ElifStatementAstNode : IStatement
 public class ElseStatementAstNode : IStatement
 {
     public FunctionBodyAstNode Body { get; set; }
+
     public static ElseStatementAstNode? TryParse(Parser parser)
     {
         if (parser.Peek().Type != TokenType.Else) return null;
@@ -158,6 +161,7 @@ public class SwitchNodeAstNode : IStatement
 {
     public ConstantExpressionAstNode Constant { get; set; }
     public FunctionBodyAstNode Body { get; set; }
+    
     public static SwitchNodeAstNode? TryParse(Parser parser)
     {
         if (parser.Peek().Type != TokenType.Case) return null;
