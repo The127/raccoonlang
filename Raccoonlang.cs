@@ -41,6 +41,6 @@ class Raccoonlang
         "}");
 
         FileAstNode ast = Parser.Parse((TokenStream) stream);
-        Console.WriteLine(ast.AutoToString(prettyPrint:false));
+        Console.WriteLine(ast.AutoToString());
     }
 }

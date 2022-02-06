@@ -27,7 +27,7 @@ public static class ObjectExtensions
                 }
                 else
                 {
-                    sb.Append(propertyValue?.ToString() ?? "null");
+                    sb.Append(propertyValue?.ToString().Replace("\"", "\\\"") ?? "null");
                 }
                 if (propertyInfo.PropertyType.IsAssignableTo(typeof(string))) sb.Append('"');
             }
