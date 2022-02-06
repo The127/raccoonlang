@@ -7,11 +7,10 @@ public static class ObjectExtensions
 {
     public static string AutoToString(this object? o, bool b = true)
     {
-        if (o == null) return "null";
+        if (o == null) return "";
         var sb = new StringBuilder();
 
-        if (!b) sb.Append($"\"{o.GetType().Name}\": ");
-        sb.Append('{');
+        if (b) sb.Append('{');
 
         var properties = o.GetType().GetProperties();
         for (var index = 0; index < properties.Length; index++)
@@ -28,7 +27,7 @@ public static class ObjectExtensions
             else if (propertyInfo.PropertyType.IsEnumerable())
             {
                 var enumerable = (propertyValue as IEnumerable)!.Cast<object>();
-                sb.Append('[').Append(string.Join(", ", enumerable.Select(x => x.AutoToString(false)))).Append(']');
+                sb.Append('[').Append(string.Join(", ", enumerable.Select(x => x.AutoToString()))).Append(']');
             }
             else if (propertyInfo.PropertyType.IsEnum)
             {
@@ -44,7 +43,8 @@ public static class ObjectExtensions
             if (index + 1 < properties.Length) sb.Append(',');
         }
 
-        sb.Append('}');
+
+        if (b) sb.Append('}');
         return sb.ToString();
     }
 
