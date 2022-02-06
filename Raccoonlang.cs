@@ -3,6 +3,7 @@
 namespace Raccoonlang;
 
 using System;
+using System.Timers;
 
 using Tokenizing;
 using Parsing;
@@ -12,42 +13,22 @@ class Raccoonlang
 {
     static void Main(string[] args)
     {
+        Timer t = new();
         Tokenizer tokenizer = new Tokenizer();
-        ITokenStream stream = tokenizer.Tokenize("hardcoded_test.rcn",
-        "namespace help.me;\n" +
-        "public interface IPerson{" +
-        "   u8 Age {get}" +
-        "   string GetFullName();" +
-        "   fn string StaticFunction();" +
-        "}" +
-        "" +
-        "private class PersonBase{" +
-        "   public new(u8 age){" +
-        "       //do nothing\n" +
-        "   }" +
-        "}" +
-        "\n" +
-        "private class Person extends PersonBase implements IPerson{" +
-        "   public new() : base(16);" +
-        "   u8 Age {get}" +
-        "   string GetFulName() => \"John Doe\";" +
-        "   fn string StaticFunction(){" +
-        "       /* TODO statements */" +
-        "   }" +
-        "}" +
-        "\n" +
-        "public data class Point2d(f64 X, f64 Y);\n" +
-        "\n" +
-        "public data class Complex(f64 X, f64 Y){" +
-        "   u16 Something => 42;" +
-        "}\n" +
-        "\n" +
-        "/* multiline comment\n" +
-        "testing */\n" +       
-        "public fn void main() { //optionally string[] args or smth\n" + 
-        "}");
 
+        t.Start();
+        
+        ITokenStream stream = tokenizer.Tokenize("test.rcn", File.ReadAllText("test.rcn"));
+        
+        t.Stop();
+        Console.WriteLine($"Tokenizing took {t.Interval}ms.");
+        
+        t.Start();
+        
         FileAstNode ast = Parser.Parse((TokenStream) stream);
+        
+        t.Stop();
         Console.WriteLine(ast.AutoToString());
+        Console.WriteLine($"Parsing took {t.Interval}ms.");
     }
 }
