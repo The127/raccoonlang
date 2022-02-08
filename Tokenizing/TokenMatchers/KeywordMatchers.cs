@@ -60,6 +60,11 @@ public class NewTokenMatcher : TokenMatcher
     public NewTokenMatcher() : base("new", TokenType.New) {}
 }
 
+public class ColonColonTokenMatcher : TokenMatcher
+{
+    public ColonColonTokenMatcher() : base("::", TokenType.ColonColon) {}
+}
+
 public class PrivateTokenMatcher : TokenMatcher
 {
     public PrivateTokenMatcher() : base("private", TokenType.Private) {}

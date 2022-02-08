@@ -31,7 +31,7 @@ public class FunctionBodyAstNode
         else if(parser.Peek().Type == TokenType.LambdaArrow)
         {
             parser.Take(TokenType.LambdaArrow);
-            node.Statements.Add(StatementAstNode.Parse(parser));
+            node.Statements.Add(ExpressionStatementAstNode.Parse(parser));
         }
         else
         {

@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Raccoonlang.Tokenizing;
+using Raccoonlang.Utils;
 
 namespace Raccoonlang.Parsing.AST;
 
@@ -8,7 +9,7 @@ public class StatementAstNode
     public static IStatement Parse(Parser parser)
     {
         var node = TryParse(parser);
-        if (node == null) throw new System.Exception("we done fucked up");
+        if (node == null) throw new System.Exception("we done fucked up!" + parser.Peek().AutoToString());
         return node;
     }
 
@@ -52,7 +53,7 @@ public interface IStatement
 
 public class LoopStatementAstNode : IStatement
 {
-    public ExpressionAstNode? Expression { get; set; }
+    public TermAstNode? Expression { get; set; }
     public FunctionBodyAstNode Body { get; set; }
 
     public static LoopStatementAstNode? TryParse(Parser parser)
@@ -63,7 +64,7 @@ public class LoopStatementAstNode : IStatement
         LoopStatementAstNode node = new();
         if (parser.Peek().Type != TokenType.OpenCurly && parser.Peek().Type != TokenType.LambdaArrow)
         {
-            node.Expression = ExpressionAstNode.Parse(parser);
+            node.Expression = TermAstNode.Parse(parser);
         }
         node.Body = FunctionBodyAstNode.Parse(parser);
         return node;
@@ -72,7 +73,7 @@ public class LoopStatementAstNode : IStatement
 
 public class IfStatementAstNode : IStatement
 {
-    public ExpressionAstNode Condition { get; set; }
+    public TermAstNode Condition { get; set; }
     public FunctionBodyAstNode Body { get; set; }
     public List<ElifStatementAstNode> Elifs { get; set; } = new();
     public ElseStatementAstNode? Else { get; set; }
@@ -83,7 +84,7 @@ public class IfStatementAstNode : IStatement
         parser.Take(TokenType.If);
 
         IfStatementAstNode node = new();
-        node.Condition = ExpressionAstNode.Parse(parser);
+        node.Condition = TermAstNode.Parse(parser);
         while (true)
         {
             var elif = ElifStatementAstNode.TryParse(parser);
@@ -99,7 +100,7 @@ public class IfStatementAstNode : IStatement
 }
 public class ElifStatementAstNode : IStatement
 {
-    public ExpressionAstNode Condition { get; set; }
+    public TermAstNode Condition { get; set; }
     public FunctionBodyAstNode Body { get; set; }
 
     public static ElifStatementAstNode? TryParse(Parser parser)
@@ -108,7 +109,7 @@ public class ElifStatementAstNode : IStatement
         parser.Take(TokenType.Elif);
 
         ElifStatementAstNode node = new();
-        node.Condition = ExpressionAstNode.Parse(parser);
+        node.Condition = TermAstNode.Parse(parser);
         node.Body = FunctionBodyAstNode.Parse(parser);
         return node;
     }
@@ -129,7 +130,7 @@ public class ElseStatementAstNode : IStatement
 
 public class SwitchStatementAstNode : IStatement
 {
-    public ExpressionAstNode Expression { get; set; }
+    public TermAstNode Expression { get; set; }
     public List<SwitchNodeAstNode> SwitchNodes { get; set; } = new();
     public DefaultSwitchNodeAstNode? DefaultNode { get; set; }
     
@@ -139,7 +140,7 @@ public class SwitchStatementAstNode : IStatement
         parser.Take(TokenType.Switch);
 
         SwitchStatementAstNode node = new();
-        node.Expression = ExpressionAstNode.Parse(parser);
+        node.Expression = TermAstNode.Parse(parser);
         parser.Take(TokenType.OpenCurly);
 
         while (true)
@@ -159,7 +160,7 @@ public class SwitchStatementAstNode : IStatement
 
 public class SwitchNodeAstNode : IStatement
 {
-    public ConstantExpressionAstNode Constant { get; set; }
+    public ConstantTermAstNode Constant { get; set; }
     public FunctionBodyAstNode Body { get; set; }
     
     public static SwitchNodeAstNode? TryParse(Parser parser)
@@ -168,7 +169,7 @@ public class SwitchNodeAstNode : IStatement
         parser.Take(TokenType.Case);
 
         SwitchNodeAstNode node = new();
-        node.Constant = ConstantExpressionAstNode.Parse(parser);
+        node.Constant = ConstantTermAstNode.Parse(parser);
         node.Body = FunctionBodyAstNode.Parse(parser);
         return node;
     }
@@ -191,7 +192,7 @@ public class DefaultSwitchNodeAstNode : IStatement
 
 public class ReturnStatementAstNode : IStatement
 {
-    public ExpressionAstNode? ReturnValue { get; set; }
+    public TermAstNode? ReturnValue { get; set; }
 
     public static ReturnStatementAstNode? TryParse(Parser parser)
     {
@@ -199,7 +200,7 @@ public class ReturnStatementAstNode : IStatement
         parser.Take(TokenType.Return);
 
         ReturnStatementAstNode node = new();
-        node.ReturnValue = ExpressionAstNode.Parse(parser);
+        node.ReturnValue = TermAstNode.Parse(parser);
         parser.Take(TokenType.Semicolon);
         return node;
     }
@@ -231,7 +232,7 @@ public class LocalVariableAssignmentStatement : IStatement
 {
     public FqtnAstNode Type { get; set; }
     public Token Name { get; set; }
-    public ExpressionAstNode? Value { get; set; }
+    public TermAstNode? Value { get; set; }
 
     public static LocalVariableAssignmentStatement? TryParse(Parser parser)
     {
@@ -257,7 +258,7 @@ public class LocalVariableAssignmentStatement : IStatement
         if (parser.Peek().Type == TokenType.Equals)
         {
             parser.Take(TokenType.Equals);
-            node.Value = ExpressionAstNode.Parse(parser);
+            node.Value = TermAstNode.Parse(parser);
         }
 
         parser.Take(TokenType.Semicolon);
@@ -267,15 +268,15 @@ public class LocalVariableAssignmentStatement : IStatement
 
 public class AssignmentStatementAstNode : IStatement
 {
-    public VariableNameExpressionAstNode Name { get; set; }
-    public ExpressionAstNode Value { get; set; }
+    public VariableNameTermAstNode Name { get; set; }
+    public TermAstNode Value { get; set; }
 
     public static AssignmentStatementAstNode? TryParse(Parser parser)
     {
         var parserState = parser.ShelfState();
         AssignmentStatementAstNode node = new();
         
-        var varName = VariableNameExpressionAstNode.TryParse(parser);
+        var varName = VariableNameTermAstNode.TryParse(parser);
         if (varName == null) return null;
         node.Name = varName;
 
@@ -286,7 +287,7 @@ public class AssignmentStatementAstNode : IStatement
         }
         parser.Take(TokenType.Dot);
         
-        node.Value = ExpressionAstNode.Parse(parser);
+        node.Value = TermAstNode.Parse(parser);
         parser.Take(TokenType.Semicolon);
         return node;
     }
@@ -294,14 +295,14 @@ public class AssignmentStatementAstNode : IStatement
 
 public class ExpressionStatementAstNode : IStatement
 {
-    public ExpressionAstNode Expression { get; set; }
+    public TermAstNode Expression { get; set; }
 
     public static ExpressionStatementAstNode? TryParse(Parser parser)
     {
         var parserState = parser.ShelfState();
         ExpressionStatementAstNode node = new();
 
-        var expression = ExpressionAstNode.TryParse(parser);
+        var expression = TermAstNode.TryParse(parser);
         if (expression == null)
         {
             parser.RestoreState(parserState);
@@ -315,6 +316,13 @@ public class ExpressionStatementAstNode : IStatement
             return null;
         }
         parser.Take(TokenType.Semicolon);
+        return node;
+    }
+
+    public static ExpressionStatementAstNode Parse(Parser parser)
+    {
+        var node = TryParse(parser);
+        if (node == null) throw new System.Exception(parser.Peek().AutoToString());
         return node;
     }
 }

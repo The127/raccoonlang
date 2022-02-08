@@ -39,6 +39,7 @@ public class Tokenizer
 
             new OpBinOrTokenMatcher(),
             new OpBinAndTokenMatcher(),
+            new ColonColonTokenMatcher(),
 
             // low priority
             new OpenParenTokenMatcher(),

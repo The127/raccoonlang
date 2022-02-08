@@ -1,10 +1,10 @@
 ﻿namespace Raccoonlang.Parsing.AST;
 
-public class MemberInitializationExpressionAstNode
+public class MemberInitializationTermAstNode
 {
-    public static MemberInitializationExpressionAstNode Parse(Parser parser)
+    public static MemberInitializationTermAstNode Parse(Parser parser)
     {
         //TODO
-        return new MemberInitializationExpressionAstNode();
+        return new MemberInitializationTermAstNode();
     }
 }

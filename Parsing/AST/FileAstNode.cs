@@ -1,3 +1,5 @@
+using LLVMSharp;
+
 namespace Raccoonlang.Parsing.AST;
 
 using Tokenizing;
@@ -26,5 +28,10 @@ public class FileAstNode
                 ", nameSpace=[" + NameSpace +
                 "], typedefs=["+ string.Join(", ", Typedefs.NodeList) +
                 "]}";
+    }
+
+    public void Compile(LLVMContextRef context)
+    {
+        
     }
 }

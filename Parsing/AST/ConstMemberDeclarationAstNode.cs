@@ -7,7 +7,7 @@ public class ConstMemberDeclarationAstNode
     public ModifiersAstNode Modifiers { get; set; }
     public FqtnAstNode Type { get; set; }
     public Token Name { get; set; }
-    public MemberInitializationExpressionAstNode Initialization { get; set; }
+    public MemberInitializationTermAstNode Initialization { get; set; }
     
     public static ConstMemberDeclarationAstNode? TryParse(Parser parser)
     {
@@ -25,7 +25,7 @@ public class ConstMemberDeclarationAstNode
         node.Type = FqtnAstNode.Parse(parser);
         node.Name = parser.Take(TokenType.Identifier);
         node.Name = parser.Take(TokenType.Equals);
-        node.Initialization = MemberInitializationExpressionAstNode.Parse(parser);
+        node.Initialization = MemberInitializationTermAstNode.Parse(parser);
         node.Name = parser.Take(TokenType.Semicolon);
         
         return node;

@@ -53,6 +53,7 @@ public enum TokenType
 
     Where,
     New,
+    ColonColon,
 
     Public,
     Private,

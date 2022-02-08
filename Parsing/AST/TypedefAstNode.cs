@@ -27,21 +27,12 @@ public class TypeDefAstNode
 
     public static TypeDefAstNode? TryParse(Parser parser)
     {
-        TypeDefAstNode node = new TypeDefAstNode();
-
-        node.TypeDef = InterfaceDefinitionAstNode.TryParse(parser);
-        if (node.TypeDef != null) return node;
-
-        node.TypeDef = ClassDefinitionAstNode.TryParse(parser);
-        if (node.TypeDef != null) return node;
-
-        node.TypeDef = DataClassDefinitionAstNode.TryParse(parser);
-        if (node.TypeDef != null) return node;
-
-        node.TypeDef = FunctionDefinitionAstNode.TryParse(parser);
-        if (node.TypeDef != null) return node;
-
-        return null;
+        ITypeDef? def = InterfaceDefinitionAstNode.TryParse(parser) as ITypeDef
+                       ?? ClassDefinitionAstNode.TryParse(parser) as ITypeDef
+                       ?? DataClassDefinitionAstNode.TryParse(parser) as ITypeDef
+                       ?? FunctionDefinitionAstNode.TryParse(parser) as ITypeDef;
+        if (def == null) return null;
+        return new(){TypeDef = def};
     }
 
     public override string ToString() => $"TypeDefAstNode{{\nTypeDef={TypeDef}}}";

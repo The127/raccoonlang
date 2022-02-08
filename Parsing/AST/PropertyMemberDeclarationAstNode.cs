@@ -52,7 +52,7 @@ public class FullPropertyDeclarationAstNode : IPropertyDeclaration
 {
     public PropertyGetterAstNode? Getter { get; set; }
     public PropertySetterAstNode? Setter { get; set; }
-    public MemberInitializationExpressionAstNode? InitExpression { get; set; }
+    public MemberInitializationTermAstNode? InitExpression { get; set; }
     
     public static FullPropertyDeclarationAstNode? TryParse(Parser parser)
     {
@@ -76,7 +76,7 @@ public class FullPropertyDeclarationAstNode : IPropertyDeclaration
         if (parser.Peek().Type == TokenType.Equals)
         {
             parser.Take(TokenType.Equals);
-            node.InitExpression = MemberInitializationExpressionAstNode.Parse(parser);
+            node.InitExpression = MemberInitializationTermAstNode.Parse(parser);
             parser.Take(TokenType.Semicolon);
         }
         
@@ -144,7 +144,7 @@ public class FullGetterAstNode : IGetter
 
 public class LambdaGetterAstNode : IGetter
 {
-    public ExpressionAstNode Expression { get; set; }
+    public TermAstNode Expression { get; set; }
     
     public static LambdaGetterAstNode? TryParse(Parser parser)
     {
@@ -152,7 +152,7 @@ public class LambdaGetterAstNode : IGetter
         parser.Take(TokenType.LambdaArrow);
         
         LambdaGetterAstNode node = new();
-        node.Expression = ExpressionAstNode.Parse(parser);
+        node.Expression = TermAstNode.Parse(parser);
         return node;
     }
 }
@@ -205,7 +205,7 @@ public class FullSetterAstNode : ISetter
 
 public class LambdaSetterAstNode : ISetter
 {
-    public ExpressionAstNode Expression { get; set; }
+    public TermAstNode Expression { get; set; }
     
     public static LambdaSetterAstNode? TryParse(Parser parser)
     {
@@ -213,7 +213,7 @@ public class LambdaSetterAstNode : ISetter
         parser.Take(TokenType.LambdaArrow);
         
         LambdaSetterAstNode node = new();
-        node.Expression = ExpressionAstNode.Parse(parser);
+        node.Expression = TermAstNode.Parse(parser);
         return node;
     }
 }
