@@ -46,7 +46,7 @@ public class FunctionDefinitionAstNode : ITypeDef
     {
         
         // module.AddFunction(Name.Text, )
-        CompilerLogger.Error("Not implemented yet!");
+        CompilerLogger.Error("Compiling functions is not implemented yet!");
         Environment.Exit(1);
     }
 }

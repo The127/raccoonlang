@@ -43,7 +43,7 @@ public class ClassDefinitionAstNode : ITypeDef
     
     public void Compile(LLVMContextRef context, IRBuilder irBuilder, Module module)
     {
-        CompilerLogger.Error("Not implemented yet!");
+        CompilerLogger.Error("Compiling classes is not implemented yet!");
         Environment.Exit(1);
     }
 }
