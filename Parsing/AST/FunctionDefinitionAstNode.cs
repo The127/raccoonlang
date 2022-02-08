@@ -3,6 +3,7 @@ using LLVMSharp;
 namespace Raccoonlang.Parsing.AST;
 
 using Tokenizing;
+using Utils;
 
 public class FunctionDefinitionAstNode : ITypeDef
 {
@@ -40,9 +41,12 @@ public class FunctionDefinitionAstNode : ITypeDef
     }
 
     public override string ToString() => $"FunctionDefinitionAstNode={{Modifiers={Modifiers}, ReturnType={ReturnType}, Name={Name}, GenericTypes={GenericTypes}, Param={Param}, GenericConstraints={GenericConstraints}, BodyContainer={BodyContainer}}}";
+    
     public void Compile(LLVMContextRef context, IRBuilder irBuilder, Module module)
     {
         
         // module.AddFunction(Name.Text, )
+        CompilerLogger.Error("Not implemented yet!");
+        Environment.Exit(1);
     }
 }

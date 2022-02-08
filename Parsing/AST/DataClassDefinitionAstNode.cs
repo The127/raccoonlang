@@ -3,6 +3,7 @@ using LLVMSharp;
 namespace Raccoonlang.Parsing.AST;
 
 using Tokenizing;
+using Utils;
 
 public class DataClassDefinitionAstNode : ITypeDef
 {
@@ -51,6 +52,7 @@ public class DataClassDefinitionAstNode : ITypeDef
 
     public void Compile(LLVMContextRef context, IRBuilder irBuilder, Module module)
     {
-        throw new NotImplementedException();
+        CompilerLogger.Error("Not implemented yet!");
+        Environment.Exit(1);
     }
 }

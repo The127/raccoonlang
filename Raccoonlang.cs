@@ -24,7 +24,7 @@ class Raccoonlang
         ITokenStream stream = tokenizer.Tokenize(filePath, File.ReadAllText(filePath));
         
         stopwatch.Stop();
-        Console.WriteLine($"Tokenizing took {stopwatch.ElapsedMilliseconds}ms.");
+        CompilerLogger.Info($"Tokenizing took {stopwatch.ElapsedMilliseconds}ms.");
         
         stopwatch.Start();
         
@@ -33,7 +33,7 @@ class Raccoonlang
         
         stopwatch.Stop();
         //Console.WriteLine(ast.AutoToString());
-        Console.WriteLine($"Parsing took {stopwatch.ElapsedMilliseconds}ms.");
+        CompilerLogger.Info($"Parsing took {stopwatch.ElapsedMilliseconds}ms.");
 
 
         ast.Compile();

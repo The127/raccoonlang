@@ -3,6 +3,7 @@ using LLVMSharp;
 namespace Raccoonlang.Parsing.AST;
 
 using Tokenizing;
+using Utils;
 
 public class ClassDefinitionAstNode : ITypeDef
 {
@@ -39,9 +40,11 @@ public class ClassDefinitionAstNode : ITypeDef
     }
 
     public override string ToString() => $"ClassDefinitionAstNode{{Modifiers={Modifiers}, Name={Name}, GenericTypes={GenericTypes}, GenericConstraints={GenericConstraints}, BodyContainer={BodyContainer}}}";
+    
     public void Compile(LLVMContextRef context, IRBuilder irBuilder, Module module)
     {
-        throw new NotImplementedException();
+        CompilerLogger.Error("Not implemented yet!");
+        Environment.Exit(1);
     }
 }
 
