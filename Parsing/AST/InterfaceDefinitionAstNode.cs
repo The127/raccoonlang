@@ -1,8 +1,9 @@
-using LLVMSharp;
-
 namespace Raccoonlang.Parsing.AST;
 
+using LLVMSharp;
+
 using Tokenizing;
+using Utils;
 
 public class InterfaceDefinitionAstNode : ITypeDef
 {
@@ -40,6 +41,7 @@ public class InterfaceDefinitionAstNode : ITypeDef
 
     public void Compile(LLVMContextRef context, IRBuilder irBuilder, Module module)
     {
-        throw new NotImplementedException();
+        CompilerLogger.Error("Not implemented yet!");
+        Environment.Exit(1);
     }
 }
