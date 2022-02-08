@@ -30,9 +30,11 @@ public class FileAstNode
                 "]}";
     }
 
-    public void Compile(LLVMContextRef context, IRBuilder irBuilder)
+    public void Compile()
     {
-        var module = new Module(NameSpace?.Compile() ?? "Module", context);
+        var module = new Module(NameSpace?.Compile() ?? "Module");
+        var context = module.GetModuleContext();
+        var irBuilder = new IRBuilder(context);
         // ignore imports for now we are single file baby
         Typedefs.Compile(context, irBuilder, module);
     }

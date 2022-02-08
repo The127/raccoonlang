@@ -35,9 +35,7 @@ class Raccoonlang
         //Console.WriteLine(ast.AutoToString());
         Console.WriteLine($"Parsing took {stopwatch.ElapsedMilliseconds}ms.");
 
-        var context = new LLVMContextRef();
-        var builder = new IRBuilder(context);
 
-        ast.Compile(context, builder);
+        ast.Compile();
     }
 }

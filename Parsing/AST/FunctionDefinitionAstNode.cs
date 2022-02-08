@@ -6,13 +6,13 @@ using Tokenizing;
 
 public class FunctionDefinitionAstNode : ITypeDef
 {
-    public ModifiersAstNode? Modifiers { get; set; }
-    public FqtnAstNode? ReturnType { get; set; }
-    public Token? Name { get; set; }
+    public ModifiersAstNode Modifiers { get; set; }
+    public FqtnAstNode ReturnType { get; set; }
+    public Token Name { get; set; }
     public GenericTypesAstNode? GenericTypes { get; set; }
-    public FunctionParametersAstNode? Param { get; set; }
-    public GenericTypeConstraintsAstNode? GenericConstraints { get; set; }
-    public FunctionBodyAstNode? BodyContainer { get; set; }
+    public FunctionParametersAstNode Param { get; set; }
+    public GenericTypeConstraintsAstNode GenericConstraints { get; set; }
+    public FunctionBodyAstNode BodyContainer { get; set; }
 
     public static FunctionDefinitionAstNode? TryParse(Parser parser)
     {
@@ -43,5 +43,6 @@ public class FunctionDefinitionAstNode : ITypeDef
     public void Compile(LLVMContextRef context, IRBuilder irBuilder, Module module)
     {
         
+        // module.AddFunction(Name.Text, )
     }
 }
