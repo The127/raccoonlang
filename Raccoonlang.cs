@@ -1,4 +1,5 @@
-﻿using LLVMSharp;
+﻿using System.Diagnostics;
+using LLVMSharp;
 using Raccoonlang.Utils;
 
 namespace Raccoonlang;
@@ -14,30 +15,29 @@ class Raccoonlang
 {
     static void Main(string[] args)
     {
-        Timer t = new();
+        Stopwatch stopwatch = new Stopwatch();
         Tokenizer tokenizer = new Tokenizer();
 
-        t.Start();
+        stopwatch.Start();
+
+        var filePath = "./Samples/simple.rcn";
+        ITokenStream stream = tokenizer.Tokenize(filePath, File.ReadAllText(filePath));
         
-        ITokenStream stream = tokenizer.Tokenize("./Samples/test.rcn", File.ReadAllText("./Samples/test.rcn"));
+        stopwatch.Stop();
+        Console.WriteLine($"Tokenizing took {stopwatch.ElapsedMilliseconds}ms.");
         
-        t.Stop();
-        Console.WriteLine($"Tokenizing took {t.Interval}ms.");
-        
-        t.Start();
+        stopwatch.Start();
         
         FileAstNode ast = Parser.Parse((TokenStream) stream);
 
         
-        t.Stop();
+        stopwatch.Stop();
         Console.WriteLine(ast.AutoToString());
-        Console.WriteLine($"Parsing took {t.Interval}ms.");
-        //
-        // var context = LLVM.ContextCreate();
-        //
-        // ast.Compile(context);
-        // // Console.WriteLine(ast.AutoToString());
-        //
-        // Console.WriteLine(context);
+        Console.WriteLine($"Parsing took {stopwatch.ElapsedMilliseconds}ms.");
+
+        var context = new LLVMContextRef();
+        var builder = new IRBuilder(context);
+
+        ast.Compile(context, builder);
     }
 }

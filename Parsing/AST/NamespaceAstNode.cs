@@ -4,7 +4,7 @@ using Tokenizing;
 
 public class NamespaceAstNode
 {
-    public FqtnAstNode? Node {get; set;}
+    public FqtnAstNode Name {get; set;}
 
     public static NamespaceAstNode? TryParse(Parser parser)
     {
@@ -12,11 +12,16 @@ public class NamespaceAstNode
 
         NamespaceAstNode node = new NamespaceAstNode();
         parser.Take(TokenType.Namespace);
-        node.Node = FqtnAstNode.Parse(parser);
+        node.Name = FqtnAstNode.Parse(parser);
         parser.Take(TokenType.Semicolon);
 
         return node;
     }
 
-    public override string ToString() => $"NamespaceAstNode={{\nNode={Node}}}";
+    public override string ToString() => $"NamespaceAstNode={{\nNode={Name}}}";
+
+    public string Compile()
+    {
+        return string.Join(".", Name.Identifiers.Select(x => x.Text));
+    }
 }

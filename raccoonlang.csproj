@@ -18,6 +18,10 @@
     <Content Include="Samples\test.rcn">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Remove="Samples\simple.rcn" />
+    <Content Include="Samples\simple.rcn">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

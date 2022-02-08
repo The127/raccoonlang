@@ -200,7 +200,7 @@ public class ReturnStatementAstNode : IStatement
         parser.Take(TokenType.Return);
 
         ReturnStatementAstNode node = new();
-        node.ReturnValue = TermAstNode.Parse(parser);
+        node.ReturnValue = TermAstNode.TryParse(parser);
         parser.Take(TokenType.Semicolon);
         return node;
     }

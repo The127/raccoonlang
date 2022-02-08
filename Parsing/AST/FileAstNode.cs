@@ -30,8 +30,8 @@ public class FileAstNode
                 "]}";
     }
 
-    public void Compile(LLVMContextRef context)
+    public void Compile(LLVMContextRef context, IRBuilder irBuilder)
     {
-        
+        var module = new Module(NameSpace?.Compile() ?? "default", context);
     }
 }
