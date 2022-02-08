@@ -1,3 +1,5 @@
+using LLVMSharp;
+
 namespace Raccoonlang.Parsing.AST;
 
 using Tokenizing;
@@ -45,5 +47,10 @@ public class DataClassDefinitionAstNode : ITypeDef
                 ", genericTypeConstraintsAstNode=" + GenericConstraints+
                 ", dataClassBodyAstNode=" + BodyContainer +
                 "}";
+    }
+
+    public void Compile(LLVMContextRef context, IRBuilder irBuilder, Module module)
+    {
+        throw new NotImplementedException();
     }
 }

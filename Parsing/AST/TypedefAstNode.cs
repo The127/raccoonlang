@@ -1,3 +1,5 @@
+using LLVMSharp;
+
 namespace Raccoonlang.Parsing.AST;
 
 public class TypeDefinitionsAstNode
@@ -19,6 +21,14 @@ public class TypeDefinitionsAstNode
     }
 
     public override string ToString() => $"TypeDefinitionsAstNode{{[{string.Join(",", NodeList)}]}}";
+
+    public void Compile(LLVMContextRef context, IRBuilder irBuilder, Module module)
+    {
+        foreach (var typeDefAstNode in NodeList)
+        {
+            typeDefAstNode.Compile(context, irBuilder, module);
+        }
+    }
 }
 
 public class TypeDefAstNode
@@ -36,8 +46,14 @@ public class TypeDefAstNode
     }
 
     public override string ToString() => $"TypeDefAstNode{{\nTypeDef={TypeDef}}}";
+
+    public void Compile(LLVMContextRef context, IRBuilder irBuilder, Module module)
+    {
+        TypeDef.Compile(context, irBuilder, module);
+    }
 }
 
 public interface ITypeDef
 {
+    void Compile(LLVMContextRef context, IRBuilder irBuilder, Module module);
 }

@@ -1,4 +1,4 @@
-﻿fn void main()
+﻿fn int main()
 {
-    return;
+    return 1;
 }

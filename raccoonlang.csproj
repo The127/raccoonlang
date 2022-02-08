@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="libLLVM" Version="13.0.0" />
+    <PackageReference Include="libLLVM.runtime.win-x86" Version="13.0.0" />
     <PackageReference Include="LLVMSharp" Version="5.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>

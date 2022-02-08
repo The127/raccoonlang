@@ -1,3 +1,5 @@
+using LLVMSharp;
+
 namespace Raccoonlang.Parsing.AST;
 
 using Tokenizing;
@@ -37,6 +39,10 @@ public class ClassDefinitionAstNode : ITypeDef
     }
 
     public override string ToString() => $"ClassDefinitionAstNode{{Modifiers={Modifiers}, Name={Name}, GenericTypes={GenericTypes}, GenericConstraints={GenericConstraints}, BodyContainer={BodyContainer}}}";
+    public void Compile(LLVMContextRef context, IRBuilder irBuilder, Module module)
+    {
+        throw new NotImplementedException();
+    }
 }
 
 public class ExtendsAstNode
